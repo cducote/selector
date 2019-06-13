@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Button} from 'react-bootstrap'
-import UnitModal from './UnitModal'
+import {Button, Modal} from 'react-bootstrap'
+// import UnitModal from './UnitModal'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 
@@ -21,23 +21,58 @@ let MAP = {
 };
 
 class UnitOverlay extends Component {
-
-    state = {
-        buttons: {
-            id: [1,2,3,4,5,6,7,8,9,10]
-        }
-    }
+    constructor(props, context) {
+        super(props, context);
+    
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    
+        this.state = {
+          show: false,
+        };
+      }
+    
+    // state = {
+    //     buttons: {
+    //         id: [1,2,3,4,5,6,7,8,9,10]
+    //     },
+    //     show: false,
+        
+    // }
     
     handleClick() {
         console.log('click happened')
     }
+    handleClose() {
+        this.setState({ show: false });
+      }
+    handleShow() {
+        this.setState({ show: true });
+      }
 
     render() {
         return (
         <div className='unitOverlay'>
             <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} onClick={()=> this.handleClick()}/>
-            {/* somehow this works */} 
-            <UnitModal/>
+            <Button variant="primary" onClick={this.handleShow}>
+          Launch modal
+        </Button>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal Title</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        This is the body text
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={this.handleShow}>
+                            Save Changes
+                        </Button>
+                        </Modal.Footer>
+                </Modal>
         </div>
         );
     }
