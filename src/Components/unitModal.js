@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap'
 
 
-class unitModal extends Component {
+class UnitModal extends Component {
    
 state = {
     show: false
@@ -38,4 +38,4 @@ handleClose() {
     }
 }
 
-export default unitModal;
+export default UnitModal;

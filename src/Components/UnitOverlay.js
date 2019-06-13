@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import unitModal from './unitModal'
+// import UnitModal from './UnitModal'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 
@@ -42,9 +42,8 @@ class UnitOverlay extends Component {
     render() {
         return (
         <div className='unitOverlay'>
-            <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} onClick={()=> this.handleClick()}/>
-            {/* somehow this works */}
-            
+            <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} onClick={()=> this.handleClick() && this.props.handleShow}/>
+            {/* somehow this works */} 
         </div>
         );
     }

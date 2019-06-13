@@ -1,14 +1,18 @@
 import React from 'react';
-import UnitOverlay from './Components/UnitOverlay'
-import unitModal from './Components/unitModal'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Landing from './Components/Landing'
+
 
 function App() {
   return (
-    <div>
-      <h1>Unit Product Selector</h1>
-      <UnitOverlay/>
-      
-    </div>
+    <Router>
+      <>
+      <Switch>
+        <Route exact path='/' component={Landing}/>
+      </Switch>
+     
+      </>
+    </Router>
   );
 }
 
