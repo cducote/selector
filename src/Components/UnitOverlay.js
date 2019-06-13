@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import UnitModal from './UnitModal'
+import {Button} from 'react-bootstrap'
+import UnitModal from './UnitModal'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 
@@ -22,7 +23,6 @@ let MAP = {
 class UnitOverlay extends Component {
 
     state = {
-        hoveredArea: false,
         buttons: {
             id: [1,2,3,4,5,6,7,8,9,10]
         }
@@ -31,19 +31,13 @@ class UnitOverlay extends Component {
     handleClick() {
         console.log('click happened')
     }
-    enterArea(area) {
-        this.setState({ hoveredArea: area });
-    }
-    
-    leaveArea(area) {
-        this.setState({ hoveredArea: null });
-    }
 
     render() {
         return (
         <div className='unitOverlay'>
-            <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} onClick={()=> this.handleClick() && this.props.handleShow}/>
+            <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} onClick={()=> this.handleClick()}/>
             {/* somehow this works */} 
+            <UnitModal/>
         </div>
         );
     }

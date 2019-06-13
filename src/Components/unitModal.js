@@ -7,18 +7,15 @@ class UnitModal extends Component {
 state = {
     show: false
 }
-
+handleOpen = () => this.setState({ show: true })
 handleClose() {
     this.setState({ show: false });
   }
-
-  handleShow() {
+handleShow() {
     this.setState({ show: true });
   }
-
-    render() {
-        return (
-            <Modal show={this.state.show} onClick={this.handleShow}>
+editModal = () => (
+    <Modal show={this.state.show} onClick={this.handleShow}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal Title</Modal.Title>
                 </Modal.Header>
@@ -34,6 +31,11 @@ handleClose() {
                     </Button>
                     </Modal.Footer>
             </Modal>
+)
+
+    render() {
+        return (
+            this.editModal()
         );
     }
 }
