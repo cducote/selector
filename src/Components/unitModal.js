@@ -15,7 +15,7 @@ handleShow() {
     this.setState({ show: true });
   }
 editModal = () => (
-    <Modal show={this.state.show} onClick={this.handleShow}>
+    <Modal trigger={<Button></Button>} show={this.state.show} onClick={this.handleShow}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal Title</Modal.Title>
                 </Modal.Header>
