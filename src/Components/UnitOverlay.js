@@ -4,6 +4,7 @@ import {Button, Modal, Container, Row, Col, Accordion, Card } from 'react-bootst
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 import light1 from '../Images/lights/10A19M60WCL.jpg'
+import Images from './Images'
 
 let MAP = {
 	id: 'map', name: 'my-map',
@@ -20,6 +21,8 @@ let MAP = {
         {id: 10, shape: 'rect', coords: [1034,1292,1246,1428], preFillColor: 'clear'}
 	]
 };
+
+
 
 class UnitOverlay extends Component {
     constructor(props, context) {
