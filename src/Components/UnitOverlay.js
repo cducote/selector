@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Button, Modal} from 'react-bootstrap'
+import {Button, Modal, Container, Row, Col, Accordion, Card } from 'react-bootstrap'
 // import UnitModal from './UnitModal'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
+import light1 from '../Images/lights/10A19M60WCL.jpg'
 
 let MAP = {
 	id: 'map', name: 'my-map',
@@ -46,10 +47,113 @@ class UnitOverlay extends Component {
             <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} onClick={()=> this.handleShow()}/>
         <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal Title</Modal.Title>
+                        <Modal.Title>Selection</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        This is the body text
+                        <Container>
+                                <Accordion>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="0">
+                                            Entry
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse eventKey='0'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="1">
+                                            Kitchen
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='1'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>                        
+                                    <Card>
+                                        <Accordion.Toggle eventKey="2">
+                                            Bar Pendant
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='2'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="3">
+                                            Living Room
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='3'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="4">
+                                            Bedroom
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='4'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="5">
+                                            Vanity
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='5'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="6">
+                                            Shower
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='6'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="7">
+                                            Closet
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='7'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="8">
+                                            Hall
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='8'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                    <Card>
+                                        <Accordion.Toggle eventKey="9">
+                                            Patio
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse  eventKey='9'>
+                                            <Card.Body>
+                                                <img alt='test' src={light1}/>
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                               </Accordion>
+                        </Container>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
