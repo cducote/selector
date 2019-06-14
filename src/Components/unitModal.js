@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Modal, Button, Container, Card, Accordion } from 'react-bootstrap'
 import light1 from '../Images/lights/10A19M60WCL.jpg'
+import kitchenlight from '../Images/lights/21L303004 BN.jpg'
 
 class UnitModal extends Component {
    
-state = {
-    show: false
-}
+    constructor(props, context) {
+        super(props, context);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.state = {
+          show: false,
+        };
+      }
+
 handleOpen = () => this.setState({ show: true })
 handleClose() {
     this.setState({ show: false });
@@ -38,7 +45,7 @@ editModal = () => (
                                         </Accordion.Toggle>
                                         <Accordion.Collapse  eventKey='1'>
                                             <Card.Body>
-                                                <img alt='test' src={light1}/>
+                                                <img alt='test' src={kitchenlight}/>
                                             </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>                        

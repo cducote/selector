@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Button, Modal, Container, Row, Col, Accordion, Card } from 'react-bootstrap'
+import {Button, Modal, Container, Accordion, Card } from 'react-bootstrap'
 // import UnitModal from './UnitModal'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 import light1 from '../Images/lights/10A19M60WCL.jpg'
+import kitchenlight from '../Images/lights/21L303004 BN.jpg'
 
 let MAP = {
 	id: 'map', name: 'my-map',
@@ -20,8 +21,12 @@ let MAP = {
         {id: 10, shape: 'rect', coords: [1034,1292,1246,1428], preFillColor: 'clear'}
 	]
 };
-
-
+// let kitchenLights = {
+// 	id: 'kitchen', name: 'kitchen-map',
+// 	areas: [
+//         {id: 7, shape: 'rect', coords: [804,1001,1019,1135], preFillColor: 'clear'},
+// 	]
+// };
 
 class UnitOverlay extends Component {
     constructor(props, context) {
@@ -70,7 +75,7 @@ class UnitOverlay extends Component {
                                         </Accordion.Toggle>
                                         <Accordion.Collapse  eventKey='1'>
                                             <Card.Body>
-                                                <img alt='test' src={light1}/>
+                                                <img alt='test' src={kitchenlight}/>
                                             </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>                        
