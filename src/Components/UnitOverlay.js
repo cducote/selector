@@ -21,12 +21,6 @@ let MAP = {
         {id: 10, shape: 'rect', coords: [1034,1292,1246,1428], preFillColor: 'clear'}
 	]
 };
-// let kitchenLights = {
-// 	id: 'kitchen', name: 'kitchen-map',
-// 	areas: [
-//         {id: 7, shape: 'rect', coords: [804,1001,1019,1135], preFillColor: 'clear'},
-// 	]
-// };
 
 class UnitOverlay extends Component {
     constructor(props, context) {
@@ -51,7 +45,10 @@ class UnitOverlay extends Component {
     render() {
         return (
         <div className='unitOverlay'>
-            <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} onClick={()=> this.handleShow()}/>
+            <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
+                        onClick={()=> this.handleShow()} 
+                        />
+
         <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Selection</Modal.Title>
