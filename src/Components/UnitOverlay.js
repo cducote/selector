@@ -4,7 +4,7 @@ import {Button, Modal, Container, Accordion, Card } from 'react-bootstrap'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 import light1 from '../Images/lights/10A19M60WCL.jpg'
-import kitchenlight from '../Images/lights/21L303004 BN.jpg'
+
 
 let MAP = {
 	id: 'map', name: 'my-map',
@@ -29,6 +29,20 @@ class UnitOverlay extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.state = {
           show: false,
+          lights: {
+            "10A19M60WCL": {
+                name: "10A19M60WCL",
+                image: require('../Images/lights/10A19M60WCL.jpg')
+        },
+            "21L303004 BN": {
+                name: "21L303004 BN",
+                image: require('../Images/lights/21L303004 BN.jpg')
+            },
+            "140511 BN": {
+                name: "140511 BN",
+                image: require('../Images/lights/140511 BN.jpg')
+            },
+    }
         };
       }
     
@@ -62,7 +76,7 @@ class UnitOverlay extends Component {
                                         </Accordion.Toggle>
                                         <Accordion.Collapse eventKey='0'>
                                             <Card.Body>
-                                                <img alt='test' src={light1}/>
+                                                <img alt='test' src={this.state.lights["10A19M60WCL"].image}/>
                                             </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>
@@ -72,7 +86,7 @@ class UnitOverlay extends Component {
                                         </Accordion.Toggle>
                                         <Accordion.Collapse  eventKey='1'>
                                             <Card.Body>
-                                                <img alt='test' src={kitchenlight}/>
+                                                <img alt='test' src={this.state.lights["21L303004 BN"].image}/>
                                             </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>                        
@@ -82,7 +96,7 @@ class UnitOverlay extends Component {
                                         </Accordion.Toggle>
                                         <Accordion.Collapse  eventKey='2'>
                                             <Card.Body>
-                                                <img alt='test' src={light1}/>
+                                                <img alt='test' src={this.state.lights["140511 BN"].image}/>
                                             </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>

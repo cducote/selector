@@ -13,6 +13,10 @@ class UnitModal extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.state = {
           show: false,
+          lights: {
+              name: "10A19M60WCL",
+              image: "../Images/lights/10A19M60WCL"
+          }
         };
       }
 
