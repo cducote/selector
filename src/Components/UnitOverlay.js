@@ -22,13 +22,9 @@ let MAP = {
 	]
 };
 
-const myMap = MAP.areas
-
-let targetArea = myMap.find(targetArea => targetArea.id === 10)
-
 class UnitOverlay extends Component {
         state = {
-          areaClicked: 99,
+          areaClicked: 0,
           showModalEntry: false,
           showModalKitchen: false,
           showModalBP: false,
@@ -47,22 +43,31 @@ class UnitOverlay extends Component {
             },
     }
         };
-
-     
-    setAreaClicked = () => {
-        this.setState({ areaClicked: 9 })
+    
+    determineModal() {
+        let areaId = this.state.areaClicked
+        if (areaId === 7){
+            this.handleShowModalKitchen()
+        } else if (areaId === 9){
+            this.handleShowModalBP()
+        } else if (areaId === 10) {
+            this.handleShowModalEntry()
+        }
+        console.log(areaId)
+    }    
+    areaCheck = async (area) => {
+        // console.log(area.id)
+        await this.setState({ areaClicked: area.id })
+        this.determineModal()
     }
-    areaCheck = (area) => {
-        console.log(area.name)
-        // this.setState({ areaClicked: 9 })
-    }
+    
     handleCloseModalEntry = async () => {
         this.setState({ showModalEntry: false });
       }
     handleShowModalEntry = async () => {
-        this.setState({ showModalEntry: true });
-      }
-      handleCloseModalKitchen = async () => {
+            this.setState({ showModalEntry: true });
+        }
+    handleCloseModalKitchen = async () => {
         this.setState({ showModalKitchen: false });
       }
     handleShowModalKitchen = async () => {
@@ -73,7 +78,6 @@ class UnitOverlay extends Component {
       }
     handleShowModalBP = async () => {
         this.setState({ showModalBP: true });
-        
       }
     
     render() {
@@ -97,23 +101,6 @@ class UnitOverlay extends Component {
                                                 <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
                                             </Card.Body>
                                     </Card>
-                                    {/* <Card>
-                                        <Card.Header>
-                                            Kitchen
-                                        </Card.Header>
-                                            <Card.Body>
-                                                <img alt='test' src={this.state.lights["21L303004 BN"].image}/>
-                                            </Card.Body>
-                                    </Card>                        
-                                    <Card>
-                                        <Card.Header>
-                                            Bar Pendant
-                                            </Card.Header>
-                                            <Card.Body>
-                                                <img alt='test' src={this.state.lights["140511 BN"].image}/>
-                                            </Card.Body>
-                                        
-                                    </Card> */}
                         </Container>
                     </Modal.Body>
                     <Modal.Footer>
