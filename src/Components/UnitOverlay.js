@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Modal, Container, Card } from 'react-bootstrap'
+import {Button, Modal, Container, Card} from 'react-bootstrap'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 
@@ -32,18 +32,23 @@ class UnitOverlay extends Component {
           showModalEntry: false,
           showModalKitchen: false,
           showModalBP: false,
-          lights: {
+          cart: [],
+
+          light: {
             "11L300701 WH": {
                 name: "11L300701 WH",
-                image: require('../Images/lights/11L300701 WH.jpg')
+                image: require('../Images/lights/11L300701 WH.jpg'),
+                price: 10
         },
             "21L303004 BN": {
                 name: "21L303004 BN",
-                image: require('../Images/lights/21L303004 BN.jpg')
+                image: require('../Images/lights/21L303004 BN.jpg'),
+                price: 13
             },
             "140511 BN": {
                 name: "140511 BN",
-                image: require('../Images/lights/140511 BN.jpg')
+                image: require('../Images/lights/140511 BN.jpg'),
+                price: 32
             },
     }
         };
@@ -76,6 +81,9 @@ class UnitOverlay extends Component {
     areaCheck = async (area) => {
         await this.setState({ areaClicked: area.id })
         this.determineModal()
+    }
+    pushToCart = async (light) => {
+        console.log('fuck')
     }
     
     handleCloseModalBF = async () =>{
@@ -140,6 +148,7 @@ class UnitOverlay extends Component {
       }
     
     render() {
+        const light = this.state.light
         return (
         <div className='unitOverlay'>
             <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
@@ -157,7 +166,7 @@ class UnitOverlay extends Component {
                                     Choose a fan by clicking below 
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                        <img alt='test' src={light["11L300701 WH"].image} onClick={(light) => this.pushToCart(light)}/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -183,7 +192,7 @@ class UnitOverlay extends Component {
                                        Choose a fan by clicking below
                                         </Card.Header>
                                             <Card.Body>
-                                                <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                                <img alt='test' src={light["11L300701 WH"].image}/>
                                             </Card.Body>
                                     </Card>
                         </Container>
@@ -209,7 +218,7 @@ class UnitOverlay extends Component {
                                     Select a light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                        <img alt='test' src={this.state.light["11L300701 WH"].image}/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -235,7 +244,7 @@ class UnitOverlay extends Component {
                                     select a light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                        <img alt='test' src={light["11L300701 WH"].image}/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -261,7 +270,7 @@ class UnitOverlay extends Component {
                                             select a hallway light
                                         </Card.Header>
                                             <Card.Body>
-                                                <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                                <img alt='test' src={light["11L300701 WH"].image}/>
                                             </Card.Body>
                                     </Card>
                         </Container>
@@ -287,7 +296,7 @@ class UnitOverlay extends Component {
                                     select a shower light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                        <img alt='test' src={light["11L300701 WH"].image}/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -313,7 +322,7 @@ class UnitOverlay extends Component {
                                     selct a vanity light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                        <img alt='test' src={light["11L300701 WH"].image}/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -339,7 +348,7 @@ class UnitOverlay extends Component {
                                     select and entryway light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.lights["11L300701 WH"].image}/>
+                                        <img alt='test' src={light["11L300701 WH"].image}/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -366,7 +375,7 @@ class UnitOverlay extends Component {
                                     Kitchen
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.lights["21L303004 BN"].image}/>
+                                        <img alt='test' src={light["21L303004 BN"].image}/>
                                     </Card.Body>
                             </Card>              
                         </Container>
@@ -384,16 +393,16 @@ class UnitOverlay extends Component {
                 {/* Bar Pendant Modal */}
                 <Modal show={this.state.showModalBP} onHide={this.handleCloseModalBP}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Selection</Modal.Title>
+                        <Modal.Title>Bar Pendant</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Container>
                             <Card>
                                 <Card.Header>
-                                    Bar Pendant
+                                    select a light
                                 </Card.Header>
                                 <Card.Body>
-                                    <img alt='test' src={this.state.lights["140511 BN"].image}/>
+                                    <img alt='test' src={light["140511 BN"].image}/>
                                 </Card.Body>
                             </Card>                   
                         </Container>
@@ -407,6 +416,7 @@ class UnitOverlay extends Component {
                         </Button>
                         </Modal.Footer>
                 </Modal>
+                <Button variant="danger" href='/checkout'>All Done</Button>
         </div>
         );
     }

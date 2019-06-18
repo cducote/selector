@@ -6,8 +6,8 @@ class Landing extends Component {
         return (
             <>
             <h1>Unit Product Selector</h1>
-            <UnitOverlay>
-            </UnitOverlay>  
+            <UnitOverlay/>
+              
             </>
         );
     }
