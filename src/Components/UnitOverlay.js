@@ -52,9 +52,9 @@ class UnitOverlay extends Component {
     setAreaClicked = () => {
         this.setState({ areaClicked: 9 })
     }
-    areaCheck = () => {
-        console.log(targetArea)
-        this.setState({ areaClicked: 9 })
+    areaCheck = (area) => {
+        console.log(area.name)
+        // this.setState({ areaClicked: 9 })
     }
     handleCloseModalEntry = async () => {
         this.setState({ showModalEntry: false });
@@ -80,7 +80,7 @@ class UnitOverlay extends Component {
         return (
         <div className='unitOverlay'>
             <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
-                        onClick={()=> this.areaCheck()} 
+                        onClick={(area)=> this.areaCheck(area)} 
                         />
         {/* Entry Modal */}
         <Modal show={this.state.showModalEntry} onHide={this.handleCloseModalEntry}>
