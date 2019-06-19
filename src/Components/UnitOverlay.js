@@ -61,12 +61,11 @@ class UnitOverlay extends Component {
     areaCheck = async (area) => {
         await this.setState({ areaClicked: area.id })
         this.determineModal()
+        console.log(area)
     }
 
-    pushToCart = async (selectedLights) => {
-       let cartItem = this.state.cart
-       let productID = selectedLights.id
-       await console.log(this.state.stock)
+    pushToCart = (light) => {
+       console.log(light)
     }
     
     handleCloseModalBF = async () =>{
@@ -134,7 +133,7 @@ class UnitOverlay extends Component {
             const lightCard = LIGHTS.map((light, i) => {
               return (
                 <Card key={i}>
-                  <img alt='test' src={light.image} onClick={(light)=> this.pushToCart(light)}/>
+                  <img alt='test' map={LIGHTS} src={light.image} onClick={()=> this.pushToCart(light)}/>
                 </Card>
               )
             })
