@@ -7,6 +7,8 @@ import sampledata from './sampledata'
 let MAP = ImageMap
 let LIGHTS = sampledata
 
+
+
 class UnitOverlay extends Component {
         state = {
           areaClicked: 0,
@@ -21,7 +23,16 @@ class UnitOverlay extends Component {
           showModalKitchen: false,
           showModalBP: false,
           cart: [],
+          stock: []
         };
+
+
+    getStock() {
+        this.setState({ stock: LIGHTS })
+    }
+    componentWillMount() {
+        this.getStock()
+    }
     
     determineModal() {
         let areaId = this.state.areaClicked
@@ -52,8 +63,11 @@ class UnitOverlay extends Component {
         await this.setState({ areaClicked: area.id })
         this.determineModal()
     }
-    pushToCart = async (light) => {
-        console.log(LIGHTS)
+
+    pushToCart = async (selectedLights) => {
+       let cartItem = this.state.cart
+       let productID = selectedLights.id
+       await console.log(this.state.stock)
     }
     
     handleCloseModalBF = async () =>{
@@ -118,12 +132,11 @@ class UnitOverlay extends Component {
       }
     
     render() {
-
-      
             const lightCard = LIGHTS.map((light, i) => {
               return (
                 <Card key={i}>
-                  <img alt='test' src={light.image}/>
+                  <img alt='test' src={light.image} onClick={(light)=> this.pushToCart(light)}/>
+                  <span>{light.name} ${light.price}</span>
                 </Card>
               )
             })
