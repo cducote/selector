@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import {Button, Modal, Container, Card} from 'semantic-ui-react'
+import {Button, Modal, Container, Card} from 'react-bootstrap'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 import ImageMap from './ImageMap'
 import sampledata from './sampledata'
-import ModalBF from './Modals/ModalBF'
+
 let MAP = ImageMap
 let LIGHTS = sampledata
-
-
 
 class UnitOverlay extends Component {
         state = {
@@ -137,7 +135,6 @@ class UnitOverlay extends Component {
               return (
                 <Card key={i}>
                   <img alt='test' src={light.image} onClick={(light)=> this.pushToCart(light)}/>
-                  <span>{light.name} ${light.price}</span>
                 </Card>
               )
             })
