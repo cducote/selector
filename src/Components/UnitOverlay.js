@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Button, Modal, Container, Card} from 'react-bootstrap'
+import {Button, Modal, Container, Card} from 'semantic-ui-react'
 import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 import ImageMap from './ImageMap'
 import sampledata from './sampledata'
+import ModalBF from './Modals/ModalBF'
 let MAP = ImageMap
 let LIGHTS = sampledata
 
@@ -75,6 +76,7 @@ class UnitOverlay extends Component {
     }
     pushToCart = async (light) => {
         console.log(LIGHTS)
+        console.log()
     }
     
     handleCloseModalBF = async () =>{
@@ -139,276 +141,19 @@ class UnitOverlay extends Component {
       }
     
     render() {
-        const light = this.state.light
-        const test = LIGHTS
+      
         return (
+        <div>
         <div className='unitOverlay'>
             <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
                         onClick={(area)=> this.areaCheck(area)} 
                         />
-        {/* Bed Fan */}
-        <Modal className='BedFan' show={this.state.showModalBF} onHide={this.handleCloseModalBF}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Bed Room</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    Choose a fan by clicking below 
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src={test[0].image} onClick={(light) => this.pushToCart(light)}/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalBF}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalBF}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-        {/* Living Room Fan */}
-        <Modal show={this.state.showModalLF} onHide={this.handleCloseModalLF}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Living Room</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                                    <Card>
-                                       <Card.Header>
-                                       Choose a fan by clicking below
-                                        </Card.Header>
-                                            <Card.Body>
-                                                <img alt='test' src={light["11L300701 WH"].image}/>
-                                            </Card.Body>
-                                    </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalLF}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalLF}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-        {/* Balcony Modal */}
-        <Modal show={this.state.showModalBalcony} onHide={this.handleCloseModalBalcony}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Balcony</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    Select a light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src={this.state.light["11L300701 WH"].image}/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalBalcony}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalBalcony}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-        {/* Closet */}
-        <Modal show={this.state.showModalCloset} onHide={this.handleCloseModalCloset}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Closet</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select a light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalCloset}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalCloset}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-        {/* Hallway */}
-        <Modal show={this.state.showModalHall} onHide={this.handleCloseModalHall}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Hallway</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                                    <Card>
-                                       <Card.Header>
-                                            select a hallway light
-                                        </Card.Header>
-                                            <Card.Body>
-                                                <img alt='test' src={light["11L300701 WH"].image}/>
-                                            </Card.Body>
-                                    </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalHall}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalHall}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-        {/* Shower */}
-        <Modal show={this.state.showModalShower} onHide={this.handleCloseModalShower}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Shower</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select a shower light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalShower}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalShower}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-        {/* Vanity */}
-        <Modal show={this.state.showModalVanity} onHide={this.handleCloseModalVanity}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Vanity</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    selct a vanity light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalVanity}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalVanity}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>    
-        {/* Entry Modal */}
-        <Modal show={this.state.showModalEntry} onHide={this.handleCloseModalEntry}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Entryway</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select and entryway light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalEntry}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalEntry}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-
-                {/* Kitch Modal */}
-                <Modal show={this.state.showModalKitchen} onHide={this.handleCloseModalKitchen}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Kitchen</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    Kitchen
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src={light["21L303004 BN"].image}/>
-                                    </Card.Body>
-                            </Card>              
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalKitchen}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalKitchen}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
-
-                {/* Bar Pendant Modal */}
-                <Modal show={this.state.showModalBP} onHide={this.handleCloseModalBP}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Bar Pendant</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select a light
-                                </Card.Header>
-                                <Card.Body>
-                                    <img alt='test' src={light["140511 BN"].image}/>
-                                </Card.Body>
-                            </Card>                   
-                        </Container>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleCloseModalBP}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalBP}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
+            <ModalBF/>
+        </div>
+                    
+        <div>
                 <Button variant="danger" href='/checkout'>All Done</Button>
+        </div>
         </div>
         );
     }
