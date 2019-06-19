@@ -24,8 +24,7 @@ class UnitOverlay extends Component {
           cart: [],
           stock: []
         };
-
-
+        
     getStock() {
         this.setState({ stock: LIGHTS })
     }
@@ -61,11 +60,24 @@ class UnitOverlay extends Component {
     areaCheck = async (area) => {
         await this.setState({ areaClicked: area.id })
         this.determineModal()
-        console.log(area)
+        // console.log(area)
     }
 
-    pushToCart = (light) => {
-       console.log(light)
+    pushToCart = async (light) => {
+       await this.state.cart.push(light)
+       this.setState({
+        showModalBF: false,
+        showModalLF: false,
+        showModalBalcony: false,
+        showModalCloset: false,
+        showModalHall: false,
+        showModalShower: false,
+        showModalVanity: false,
+        showModalEntry: false,
+        showModalKitchen: false,
+        showModalBP: false
+       })
+       console.log(light.name + "added to cart :-)")
     }
     
     handleCloseModalBF = async () =>{
@@ -165,9 +177,6 @@ class UnitOverlay extends Component {
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalBF}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalBF}>
-                            Save Changes
                         </Button>
                         </Modal.Footer>
                 </Modal>
