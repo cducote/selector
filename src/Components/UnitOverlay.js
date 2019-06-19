@@ -21,27 +21,6 @@ class UnitOverlay extends Component {
           showModalKitchen: false,
           showModalBP: false,
           cart: [],
-
-          light: {
-            "11L300701 WH": {
-                id: 0,
-                name: "11L300701 WH",
-                image: require('../Images/lights/11L300701 WH.jpg'),
-                price: 10
-        },
-            "21L303004 BN": {
-                id: 1,
-                name: "21L303004 BN",
-                image: require('../Images/lights/21L303004 BN.jpg'),
-                price: 13
-            },
-            "140511 BN": {
-                id: 2,
-                name: "140511 BN",
-                image: require('../Images/lights/140511 BN.jpg'),
-                price: 32
-            },
-    }
         };
     
     determineModal() {
@@ -67,7 +46,7 @@ class UnitOverlay extends Component {
         } else if (areaId === 10) {
             this.handleShowModalEntry()
         }
-        console.log(areaId)
+        // console.log(areaId)
     }    
     areaCheck = async (area) => {
         await this.setState({ areaClicked: area.id })
@@ -139,8 +118,7 @@ class UnitOverlay extends Component {
       }
     
     render() {
-        const light = this.state.light
-        const test = LIGHTS
+    
         return (
         <div className='unitOverlay'>
             <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
@@ -184,7 +162,7 @@ class UnitOverlay extends Component {
                                        Choose a fan by clicking below
                                         </Card.Header>
                                             <Card.Body>
-                                                <img alt='test' src={light["11L300701 WH"].image}/>
+                                                <img alt='test' src='https://fillmurray.com/200/300'/>
                                             </Card.Body>
                                     </Card>
                         </Container>
@@ -210,7 +188,7 @@ class UnitOverlay extends Component {
                                     Select a light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={this.state.light["11L300701 WH"].image}/>
+                                        <img alt='test' src='https://fillmurray.com/200/300'/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -236,7 +214,7 @@ class UnitOverlay extends Component {
                                     select a light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
+                                        <img alt='test' src='https://fillmurray.com/200/300'/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -262,7 +240,7 @@ class UnitOverlay extends Component {
                                             select a hallway light
                                         </Card.Header>
                                             <Card.Body>
-                                                <img alt='test' src={light["11L300701 WH"].image}/>
+                                                <img alt='test' src='https://fillmurray.com/200/300'/>
                                             </Card.Body>
                                     </Card>
                         </Container>
@@ -288,7 +266,7 @@ class UnitOverlay extends Component {
                                     select a shower light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
+                                        <img alt='test' src='https://fillmurray.com/200/300'/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -314,7 +292,7 @@ class UnitOverlay extends Component {
                                     selct a vanity light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
+                                        <img alt='test' src='https://fillmurray.com/200/300'/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -340,7 +318,7 @@ class UnitOverlay extends Component {
                                     select and entryway light
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={light["11L300701 WH"].image}/>
+                                        <img alt='test' src='https://fillmurray.com/200/300'/>
                                     </Card.Body>
                             </Card>
                         </Container>
@@ -367,7 +345,7 @@ class UnitOverlay extends Component {
                                     Kitchen
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={light["21L303004 BN"].image}/>
+                                        <img alt='test' src='https://fillmurray.com/300/300'/>
                                     </Card.Body>
                             </Card>              
                         </Container>
@@ -394,7 +372,7 @@ class UnitOverlay extends Component {
                                     select a light
                                 </Card.Header>
                                 <Card.Body>
-                                    <img alt='test' src={light["140511 BN"].image}/>
+                                    <img alt='test' src='https://fillmurray.com/200/200'/>
                                 </Card.Body>
                             </Card>                   
                         </Container>
