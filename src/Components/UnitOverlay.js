@@ -158,7 +158,7 @@ class UnitOverlay extends Component {
                                     Choose a fan by clicking below 
                                 </Card.Header>
                                     <Card.Body>
-                                        <img alt='test' src={test[0].image} onClick={(light) => this.pushToCart(light)}/>
+                                        <img alt='test' src='https://fillmurray.com/200/300' onClick={(light) => this.pushToCart(light)}/>
                                     </Card.Body>
                             </Card>
                         </Container>
