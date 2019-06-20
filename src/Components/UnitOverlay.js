@@ -145,7 +145,7 @@ class UnitOverlay extends Component {
             const lightCard = LIGHTS.map((light, i) => {
               return (
                 <Card key={i}>
-                  <img alt='test' map={LIGHTS} src={light.image} onClick={()=> this.pushToCart(light)}/>
+                  <img alt='test' src={light.image} onClick={()=> this.pushToCart(light)}/>
                 </Card>
               )
             })
@@ -163,16 +163,6 @@ class UnitOverlay extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         {lightCard}
-                        {/* <Container>
-                            <Card>
-                                <Card.Header>
-                                    Choose a fan by clicking below 
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src='https://fillmurray.com/200/300' onClick={(light) => this.pushToCart(light)}/>
-                                    </Card.Body>
-                            </Card>
-                        </Container> */}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalBF}>
