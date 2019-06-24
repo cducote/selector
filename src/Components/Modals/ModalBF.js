@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import {Button, Modal, Container, Card, Image} from 'semantic-ui-react'
- 
+import {Button, Modal, Image, Container, Card} from 'react-bootstrap'
+import sampledata from '../sampledata'
 
-class ModalBF extends Component {
+let LIGHTS = sampledata
+const lightCard = LIGHTS.map((light, i) => {
+    return (
+      <Card key={i}>
+        <img alt='test' src={light.image} onClick={()=> this.pushToCart(light)}/>
+      </Card>
+    )
+  })
+export default class ModalBF extends Component {
     state = {
         areaClicked: 0,
         showModalBF: false,
@@ -105,16 +113,26 @@ class ModalBF extends Component {
     handleShowModalBP = async () => {
         this.setState({ showModalBP: true });
       }
+
+    
     lightModal = () => (
-        <Modal trigger={<Button>open</Button>}>
-            <Modal.Header>Select a light</Modal.Header>
-            <Modal.Content image>
-                <Image wrapped size='medium' src='https://fillmurray.com/200/300'/>
-            </Modal.Content>
-        </Modal>
+        <Modal className='BedFan' show={this.state.showModalBF} onHide={this.handleCloseModalBF}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Bed Room</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {lightCard}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleCloseModalBF}>
+                            Close
+                        </Button>
+                        </Modal.Footer>
+                </Modal>
     )
 
     render() {
+        
         return (
             this.lightModal()
 
@@ -396,5 +414,5 @@ class ModalBF extends Component {
     }
 }
 
-export default ModalBF;
+
 

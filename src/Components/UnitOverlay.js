@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import {Button, Modal, Container, Card} from 'react-bootstrap'
 import unit from '../Images/units/unit.png'
+import NothingHere from './NothingHere'
 import ImageMapper from 'react-image-mapper'
 import ImageMap from './ImageMap'
 import sampledata from './sampledata'
+import axios from 'axios'
+import ModalBF from './Modals/ModalBF'
 
 let MAP = ImageMap
 let LIGHTS = sampledata
+let KEY = NothingHere
 
 class UnitOverlay extends Component {
         state = {
@@ -25,11 +29,16 @@ class UnitOverlay extends Component {
           stock: []
         };
         
-    getStock() {
-        this.setState({ stock: LIGHTS })
-    }
+    // getStock() {
+    //     this.setState({ stock: LIGHTS })
+    // }
     componentWillMount() {
-        this.getStock()
+        this.getAllProducts()
+    }
+    getAllProducts = async ()=> {
+        const response = await axios.get(`http://vineyardlighting.com/api/allProducts.php?key=${KEY}`)
+        this.setState({ stock: response })
+        console.log(response)
     }
     
     determineModal() {
@@ -55,7 +64,7 @@ class UnitOverlay extends Component {
         } else if (areaId === 10) {
             this.handleShowModalEntry()
         }
-        // console.log(areaId)
+        // console.log()
     }    
     areaCheck = async (area) => {
         await this.setState({ areaClicked: area.id })
