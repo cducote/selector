@@ -32,14 +32,14 @@ class UnitOverlay extends Component {
     // getStock() {
     //     this.setState({ stock: LIGHTS })
     // }
-    componentWillMount() {
-        this.getAllProducts()
-    }
-    getAllProducts = async ()=> {
-        const response = await axios.get(`http://vineyardlighting.com/api/allProducts.php?key=${KEY}`)
-        this.setState({ stock: response })
-        console.log(response)
-    }
+    // componentWillMount() {
+    //     this.getAllProducts()
+    // }
+    // getAllProducts = async ()=> {
+    //     const response = await axios.get(`http://vineyardlighting.com/api/allProducts.php?key=${KEY}`)
+    //     this.setState({ stock: response })
+    //     console.log(response)
+    // }
     
     determineModal() {
         let areaId = this.state.areaClicked
@@ -64,12 +64,11 @@ class UnitOverlay extends Component {
         } else if (areaId === 10) {
             this.handleShowModalEntry()
         }
-        // console.log()
     }    
     areaCheck = async (area) => {
         await this.setState({ areaClicked: area.id })
         this.determineModal()
-        // console.log(area)
+        console.log(area.coords)
     }
 
     pushToCart = async (light) => {
@@ -99,7 +98,7 @@ class UnitOverlay extends Component {
         this.setState({ showModalLF: false });
       }
     handleShowModalLF = async () => {
-        this.setState({ showModalBP: true });
+        this.setState({ showModalLF: true });
       }
     handleCloseModalBalcony = async () =>{
         this.setState({ showModalBalcony: false });
@@ -160,11 +159,12 @@ class UnitOverlay extends Component {
             })
     
         return (
-        <div>
+        <>
         <div className='unitOverlay'>
             <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
                         onClick={(area)=> this.areaCheck(area)} 
                         />
+        </div>
         {/* Bed Fan */}
         <Modal className='BedFan' show={this.state.showModalBF} onHide={this.handleCloseModalBF}>
                     <Modal.Header closeButton>
@@ -185,23 +185,11 @@ class UnitOverlay extends Component {
                         <Modal.Title>Living Room</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                                    <Card>
-                                       <Card.Header>
-                                       Choose a fan by clicking below
-                                        </Card.Header>
-                                            <Card.Body>
-                                                <img alt='test' src='https://fillmurray.com/200/300'/>
-                                            </Card.Body>
-                                    </Card>
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalLF}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalLF}>
-                            Save Changes
                         </Button>
                         </Modal.Footer>
                 </Modal>
@@ -211,23 +199,11 @@ class UnitOverlay extends Component {
                         <Modal.Title>Balcony</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    Select a light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src='https://fillmurray.com/200/300'/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalBalcony}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalBalcony}>
-                            Save Changes
                         </Button>
                         </Modal.Footer>
                 </Modal>
@@ -237,23 +213,11 @@ class UnitOverlay extends Component {
                         <Modal.Title>Closet</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select a light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src='https://fillmurray.com/200/300'/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalCloset}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalCloset}>
-                            Save Changes
                         </Button>
                         </Modal.Footer>
                 </Modal>
@@ -263,23 +227,11 @@ class UnitOverlay extends Component {
                         <Modal.Title>Hallway</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                                    <Card>
-                                       <Card.Header>
-                                            select a hallway light
-                                        </Card.Header>
-                                            <Card.Body>
-                                                <img alt='test' src='https://fillmurray.com/200/300'/>
-                                            </Card.Body>
-                                    </Card>
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalHall}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalHall}>
-                            Save Changes
                         </Button>
                         </Modal.Footer>
                 </Modal>
@@ -289,23 +241,11 @@ class UnitOverlay extends Component {
                         <Modal.Title>Shower</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select a shower light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src='https://fillmurray.com/200/300'/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalShower}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalShower}>
-                            Save Changes
                         </Button>
                         </Modal.Footer>
                 </Modal>
@@ -315,23 +255,11 @@ class UnitOverlay extends Component {
                         <Modal.Title>Vanity</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    selct a vanity light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src='https://fillmurray.com/200/300'/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalVanity}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleShowModalVanity}>
-                            Save Changes
                         </Button>
                         </Modal.Footer>
                 </Modal>    
@@ -341,83 +269,44 @@ class UnitOverlay extends Component {
                         <Modal.Title>Entryway</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select and entryway light
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src='https://fillmurray.com/200/300'/>
-                                    </Card.Body>
-                            </Card>
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalEntry}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={this.handleShowModalEntry}>
-                            Save Changes
-                        </Button>
                         </Modal.Footer>
                 </Modal>
-
                 {/* Kitch Modal */}
                 <Modal show={this.state.showModalKitchen} onHide={this.handleCloseModalKitchen}>
                     <Modal.Header closeButton>
                         <Modal.Title>Kitchen</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    Kitchen
-                                </Card.Header>
-                                    <Card.Body>
-                                        <img alt='test' src='https://fillmurray.com/300/300'/>
-                                    </Card.Body>
-                            </Card>              
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalKitchen}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={this.handleShowModalKitchen}>
-                            Save Changes
-                        </Button>
                         </Modal.Footer>
                 </Modal>
-
                 {/* Bar Pendant Modal */}
                 <Modal show={this.state.showModalBP} onHide={this.handleCloseModalBP}>
                     <Modal.Header closeButton>
                         <Modal.Title>Bar Pendant</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container>
-                            <Card>
-                                <Card.Header>
-                                    select a light
-                                </Card.Header>
-                                <Card.Body>
-                                    <img alt='test' src='https://fillmurray.com/200/200'/>
-                                </Card.Body>
-                            </Card>                   
-                        </Container>
+                        {lightCard}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseModalBP}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={this.handleShowModalBP}>
-                            Save Changes
-                        </Button>
                         </Modal.Footer>
                 </Modal>
                 <Button variant="danger" href='/checkout'>All Done</Button>
-        </div>
-        </div>
+        </>
         );
     }
 }
