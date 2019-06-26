@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import {Button, Modal, Container, Image, Card, Row, Col} from 'react-bootstrap'
 import unit from '../Images/units/unit.png'
-import NothingHere from './NothingHere'
+// import NothingHere from './NothingHere'
 import ImageMapper from 'react-image-mapper'
 import ImageMap from './ImageMap'
 import sampledata from './sampledata'
-import axios from 'axios'
+// import axios from 'axios'
 
 
 let MAP = ImageMap
 let LIGHTS = sampledata
-let KEY = NothingHere
+// let KEY = NothingHere
 
 class UnitOverlay extends Component {
         state = {
@@ -154,13 +154,16 @@ class UnitOverlay extends Component {
               return (
                 <Card key={i}>
                     <Container onClick={()=> this.pushToCart(light)}>
-                        
-                     <Image alt='test' className='responsive' src={light.image}/>
-                     <div>
-                         {light.name}
-                     </div>
-                        
-                       
+                        <Row>
+                      <Col> 
+                     <Image alt='test' src={light.image}/>
+                     </Col> 
+                     <Col>
+                        <div id="lightName">
+                            {light.name}
+                        </div>
+                     </Col>    
+                     </Row>
                     </Container>
                   
                 </Card>

@@ -28,6 +28,11 @@ code {
     font-size: 25px;
   }
 
+div#lightName {
+  display: flex;
+  text-align: center;
+  font-size: 25px;
+}
 
 .unitContainer {
   display: flex;
