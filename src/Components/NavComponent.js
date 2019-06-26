@@ -9,8 +9,8 @@ class NavComponent extends Component {
                 <Row noGutters>
                    <Col>
                     <Nav sticky='top'>
-                        <Nav.Item className='main'>
-                            <Nav.Link href='/'> Vineyard Lighting </Nav.Link>
+                        <Nav.Item id='main'>
+                            <Nav.Link href='/' > Vineyard Lighting </Nav.Link>
                         </Nav.Item>
                         </Nav>
                     </Col>

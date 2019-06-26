@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Modal, Container, Row, Col, Card} from 'react-bootstrap'
+import {Button, Modal, Container, Image, Card, Row, Col} from 'react-bootstrap'
 import unit from '../Images/units/unit.png'
 import NothingHere from './NothingHere'
 import ImageMapper from 'react-image-mapper'
@@ -153,7 +153,16 @@ class UnitOverlay extends Component {
             const lightCard = LIGHTS.map((light, i) => {
               return (
                 <Card key={i}>
-                  <img alt='test' className='responsive' src={light.image} onClick={()=> this.pushToCart(light)}/>
+                    <Container onClick={()=> this.pushToCart(light)}>
+                        
+                     <Image alt='test' className='responsive' src={light.image}/>
+                     <div>
+                         {light.name}
+                     </div>
+                        
+                       
+                    </Container>
+                  
                 </Card>
               )
             })
@@ -161,12 +170,9 @@ class UnitOverlay extends Component {
         return (
         <>
         <Container fluid className='unitContainer'>
-          
-                
                     <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP}
                         onClick={(area)=> this.areaCheck(area)} 
                         />
-       
         </Container>
         {/* Bed Fan */}
         <Modal className='BedFan' show={this.state.showModalBF} onHide={this.handleCloseModalBF}>
