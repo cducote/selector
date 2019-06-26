@@ -26,6 +26,11 @@ code {
   
 }
 
+.unitContainer {
+  display: flex;
+  justify-content: center;
+}
+
 h1 {
   font-family: 'Sacramento', cursive;
   font-size: 100px;

@@ -160,14 +160,13 @@ class UnitOverlay extends Component {
     
         return (
         <>
-        <Container>
-            <Row>
-                <Col auto>
-                    <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
+        <Container fluid className='unitContainer'>
+          
+                
+                    <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP}
                         onClick={(area)=> this.areaCheck(area)} 
                         />
-                </Col>
-            </Row>
+       
         </Container>
         {/* Bed Fan */}
         <Modal className='BedFan' show={this.state.showModalBF} onHide={this.handleCloseModalBF}>
