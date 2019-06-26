@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.main {
+  /* width: 100%;
+  height: auto; */
+}
+
+.nav {
+  background: #212529;
+  width: 100%;
+}
+
+.nav-item {
+  
+}
+
+h1 {
+  font-family: 'Sacramento', cursive;
+  font-size: 100px;
+  text-align: center;
+}

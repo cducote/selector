@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {Button, Modal, Container, Card} from 'react-bootstrap'
+import {Button, Modal, Container, Row, Col, Card} from 'react-bootstrap'
 import unit from '../Images/units/unit.png'
 import NothingHere from './NothingHere'
 import ImageMapper from 'react-image-mapper'
 import ImageMap from './ImageMap'
 import sampledata from './sampledata'
 import axios from 'axios'
-import ModalBF from './Modals/ModalBF'
+
 
 let MAP = ImageMap
 let LIGHTS = sampledata
@@ -153,18 +153,22 @@ class UnitOverlay extends Component {
             const lightCard = LIGHTS.map((light, i) => {
               return (
                 <Card key={i}>
-                  <img alt='test' src={light.image} onClick={()=> this.pushToCart(light)}/>
+                  <img alt='test' className='responsive' src={light.image} onClick={()=> this.pushToCart(light)}/>
                 </Card>
               )
             })
     
         return (
         <>
-        <div className='unitOverlay'>
-            <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
+        <Container>
+            <Row>
+                <Col auto>
+                    <ImageMapper src={unit} width={1440} imgWidth={1920} map={MAP} 
                         onClick={(area)=> this.areaCheck(area)} 
                         />
-        </div>
+                </Col>
+            </Row>
+        </Container>
         {/* Bed Fan */}
         <Modal className='BedFan' show={this.state.showModalBF} onHide={this.handleCloseModalBF}>
                     <Modal.Header closeButton>
@@ -305,7 +309,7 @@ class UnitOverlay extends Component {
                         </Button>
                         </Modal.Footer>
                 </Modal>
-                <Button variant="danger" href='/checkout'>All Done</Button>
+                {/* <Button variant="danger" href='/checkout'>All Done</Button> */}
         </>
         );
     }
