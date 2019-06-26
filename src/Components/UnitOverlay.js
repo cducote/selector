@@ -65,6 +65,7 @@ class UnitOverlay extends Component {
             this.handleShowModalEntry()
         }
     }    
+
     areaCheck = async (area) => {
         await this.setState({ areaClicked: area.id })
         this.determineModal()
@@ -317,7 +318,7 @@ class UnitOverlay extends Component {
                         </Button>
                         </Modal.Footer>
                 </Modal>
-                {/* <Button variant="danger" href='/checkout'>All Done</Button> */}
+                <Button variant="danger" href='/checkout'>All Done</Button>
         </>
         );
     }
