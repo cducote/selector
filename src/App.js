@@ -8,11 +8,18 @@ class App extends Component{
 
   state = {
     currentUser: {
-
+      name: 'no user'
     }
   }
-  // const UnityOverlayComponent =  (props) => <Landing { ...props } />
+
+  updateUser = ( userInfo ) => {
+    this.setState({ currentUser: userInfo })
+  }
+  
 render() {
+
+  // const UnityOverlayComponent =  (props) => <Landing { ...props } />
+
   return (
     <Router>
       <>

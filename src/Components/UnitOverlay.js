@@ -25,6 +25,7 @@ class UnitOverlay extends Component {
           showModalEntry: false,
           showModalKitchen: false,
           showModalBP: false,
+          showUserModal: false,
           cart: [],
           stock: []
         };
@@ -149,6 +150,13 @@ class UnitOverlay extends Component {
     handleShowModalBP = async () => {
         this.setState({ showModalBP: true });
       }
+    handleCloseUserModal = async () => {
+        this.setState({ showUserModal: false })
+    }
+    handleShowUserModal = async () => {
+        this.setState({ showUserModal: true })
+    }
+
     
     render() {
             const lightCard = LIGHTS.map((light, i) => {
@@ -318,6 +326,8 @@ class UnitOverlay extends Component {
                         </Button>
                         </Modal.Footer>
                 </Modal>
+                
+                <Button variant='success'>Sign In</Button>
                 <Button variant="danger" href='/checkout'>All Done</Button>
         </>
         );
