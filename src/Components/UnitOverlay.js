@@ -5,6 +5,7 @@ import unit from '../Images/units/unit.png'
 import ImageMapper from 'react-image-mapper'
 import ImageMap from './ImageMap'
 import sampledata from './sampledata'
+import UserModal from './UserModal';
 // import axios from 'axios'
 
 
@@ -150,12 +151,7 @@ class UnitOverlay extends Component {
     handleShowModalBP = async () => {
         this.setState({ showModalBP: true });
       }
-    handleCloseUserModal = async () => {
-        this.setState({ showUserModal: false })
-    }
-    handleShowUserModal = async () => {
-        this.setState({ showUserModal: true })
-    }
+    
 
     
     render() {
@@ -327,7 +323,7 @@ class UnitOverlay extends Component {
                         </Modal.Footer>
                 </Modal>
                 
-                <Button variant='success'>Sign In</Button>
+                <UserModal/>
                 <Button variant="danger" href='/checkout'>All Done</Button>
         </>
         );
