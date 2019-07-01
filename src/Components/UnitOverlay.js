@@ -181,7 +181,7 @@ class UnitOverlay extends Component {
         <Container fluid className="unitContainer">
           <ImageMapper
             src={unit}
-            width={1440}
+            width={800}
             imgWidth={1920}
             map={MAP}
             onClick={area => this.areaCheck(area)}
