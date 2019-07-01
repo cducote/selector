@@ -15,13 +15,13 @@ class App extends Component {
   };
 
   render() {
-    // const UnityOverlayComponent =  (props) => <Landing { ...props } />
+    const LandingComponent =  (props) => <Landing { ...props } updateUser={this.updateUser} />
 
     return (
       <Router>
         <>
           <Switch>
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" render={LandingComponent} />
             <Route exact path="/checkout" component={Checkout} />
             <Route path="/*" component={Landing} />
           </Switch>

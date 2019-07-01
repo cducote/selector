@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 
+
 class UserModal extends Component {
   state = {
+    editUser: {
+      name: ''
+    },
     showUserModal: false
   };
 
+  // getUser = async () => {
+  //   this.setState({ currentUser: })
+  // }
   handleCloseUserModal = async () => {
     this.setState({ showUserModal: false });
   };
@@ -20,7 +27,9 @@ class UserModal extends Component {
   }
   handleSubmit = async (e) => {
     e.preventDefault()
+    const editUser = { ...this.state.editUser }
     this.setState({ showUserModal: false })
+    this.setState({ editUser })
     await this.props.getUser()
   }  
 
@@ -38,7 +47,7 @@ class UserModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
-                <Form.Control size="lg" type="text" defaultValue="Guest"/>
+                <Form.Control size="lg" type="text" name='name' defaultValue="Guest" value={this.state.editUser.name} onChange={this.handleChange}/>
                 <Button variant="primary" type="submit">
                 Submit
                 </Button>

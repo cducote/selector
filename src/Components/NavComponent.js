@@ -5,14 +5,13 @@ class NavComponent extends Component {
     render() {
         return (
             <>
-            <Navbar expand='lg'>
+            <Navbar expand='lg' sticky="top">
                 <Navbar.Brand id='main'>
                     Vineyard Lighting 
                 </Navbar.Brand> 
                 <Navbar.Toggle/>
                 <Navbar.Collapse>
-                    <Nav className='mr-auto'>
-                    </Nav>
+                    <Nav className='mr-auto'/>
                     <Nav className='justify-content-end'>
                     <Nav.Link href='/'> Home </Nav.Link>
                         <Nav.Link href='/'> About </Nav.Link>

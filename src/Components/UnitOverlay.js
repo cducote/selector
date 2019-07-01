@@ -13,7 +13,6 @@ import unit from "../Images/units/unit.png";
 import ImageMapper from "react-image-mapper";
 import ImageMap from "./ImageMap";
 import sampledata from "./sampledata";
-import UserModal from "./UserModal";
 // import axios from 'axios'
 
 let MAP = ImageMap;
@@ -332,8 +331,6 @@ class UnitOverlay extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-
-        <UserModal />
         <Button variant="danger" href="/checkout">
           All Done
         </Button>
