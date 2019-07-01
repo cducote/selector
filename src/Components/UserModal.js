@@ -10,16 +10,15 @@ class UserModal extends Component {
     showUserModal: false
   };
 
-  // getUser = async () => {
-  //   this.setState({ currentUser: })
-  // }
+  getUser = async () => {
+    this.props.updateUser(this.state.editUser.name)
+  }
   handleCloseUserModal = async () => {
     this.setState({ showUserModal: false });
   };
   handleShowUserModal = async () => {
     this.setState({ showUserModal: true });
   };
-
   handleChange = (e) => {
     const editUser = { ...this.state.editUser }
     editUser[e.target.name] = e.target.value
@@ -30,10 +29,9 @@ class UserModal extends Component {
     const editUser = { ...this.state.editUser }
     this.setState({ showUserModal: false })
     this.setState({ editUser })
-    await this.props.getUser()
+    await this.getUser()
   }  
-
-
+  
   render() {
     return (
       <div>
@@ -47,7 +45,7 @@ class UserModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
-                <Form.Control size="lg" type="text" name='name' defaultValue="Guest" value={this.state.editUser.name} onChange={this.handleChange}/>
+                <Form.Control size="lg" type="text" name='name' value={this.state.editUser.name} onChange={this.handleChange}/>
                 <Button variant="primary" type="submit">
                 Submit
                 </Button>
