@@ -33,20 +33,20 @@ class UnitOverlay extends Component {
     showModalKitchen: false,
     showModalBP: false,
     cart: [],
-    stock: []
+    products: []
   };
 
-  // getStock() {
-  //     this.setState({ stock: LIGHTS })
-  // }
-  // componentWillMount() {
-  //     this.getAllProducts()
-  // }
+  componentDidMount() {
+      this.getAllProducts()
+  }
   // getAllProducts = async ()=> {
-  //     const response = await axios.get(`http://vineyardlighting.com/api/allProducts.php?key=${KEY}`)
-  //     this.setState({ stock: response })
-  //     console.log(response)
+  //     const response = await axios.get("../allProducts.json")
+  //     this.setState({ products: response.data })
+  //     console.log(response.data)
   // }
+  getAllProducts = async ()=> {
+    this.setState({products: LIGHTS})
+  }
 
   determineModal() {
     let areaId = this.state.areaClicked;
