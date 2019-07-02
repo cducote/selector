@@ -1,19 +1,11 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Modal,
-  Container,
-  Image,
-  Card,
-  Row,
-  Col
-} from "react-bootstrap";
+import { Button, Modal, Container,Image, Card, Row, Col } from "react-bootstrap";
 import unit from "../Images/units/unit.png";
 // import NothingHere from './NothingHere'
 import ImageMapper from "react-image-mapper";
 import ImageMap from "./ImageMap";
 // import sampledata from "./sampledata";
-import bulbs from "./sampleBulbs";
+// import bulbs from "./sampleBulbs";
 import entryLights from './sampleEntry'
 import kitchen from './sampleKitchen'
 import pendants from "./samplePendants"
@@ -164,21 +156,21 @@ class UnitOverlay extends Component {
   };
 
   render() {
-    const lightCard = bulbs.map((light, i) => {
-      return (
-        <Card key={i}>
-          <Container onClick={() => this.pushToCart(light)}>
-            <Row>
-              <Col>
-                <Image alt="test" src={light.image} height="150"/>
+    // const lightCard = bulbs.map((light, i) => {
+    //   return (
+    //     <Card key={i}>
+    //       <Container onClick={() => this.pushToCart(light)}>
+    //         <Row>
+    //           <Col>
+    //             <Image alt="test" src={light.image} height="150"/>
 
-                <div id="lightName">{light.partnumber}</div>
-              </Col>
-            </Row>
-          </Container>
-        </Card>
-      );
-    });
+    //             <div id="lightName">{light.partnumber}</div>
+    //           </Col>
+    //         </Row>
+    //       </Container>
+    //     </Card>
+    //   );
+    // });
     const pendantCard = pendants.map((light, i) => {
       return (
         <Card key={i}>
@@ -426,7 +418,7 @@ class UnitOverlay extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        <Button variant="danger" href="/checkout">
+        <Button variant="danger" href="/checkout" cart={this.state.cart}>
           All Done
         </Button>
       </>
