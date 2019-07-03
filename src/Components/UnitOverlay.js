@@ -424,9 +424,6 @@ class UnitOverlay extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        <Button variant="danger" href="/checkout" cart={this.state.cart}>
-          All Done
-        </Button>
       </>
     );
   }

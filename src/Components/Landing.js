@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
 import UnitOverlay from './UnitOverlay'
-import NavComponent from './NavComponent'
+import { Button } from 'react-bootstrap'
+// import NavComponent from './NavComponent'
 import UserModal from './UserModal'
+import Checkout from './Checkout'
 
 class Landing extends Component {
+
+    state = {
+        done: false
+    }
+    handlePageChange = async () => {
+        this.setState({ done: true })
+    }
   
     render() {
+        const done = this.state.done
+        let page;
+        if (done) {
+            page = <Checkout/>
+        } else {
+            page = <div className='main'>
+                        <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser}/>
+                        <UserModal updateUser={this.props.updateUser}/>
+                        <Button variant='danger' onClick={this.handlePageChange}>done</Button>
+                   </div>
+        }
         return (
-            <div className='main'>
-            <NavComponent/>
-            {/* <h1>Product Selector</h1> */}
-            <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser}/>
-            <UserModal updateUser={this.props.updateUser}/>
-            </div>
+            <>
+            {page}
+            </>
         );
     }
 }

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Landing from "./Components/Landing";
-import Checkout from "./Components/Checkout";
+// import Checkout from "./Components/Checkout";
+import NavComponent from './Components/NavComponent'
 
 class App extends Component {
   state = {
@@ -10,10 +11,6 @@ class App extends Component {
       cart: []
     }
   };
-  updateCart = lightFixtures => {
-    
-    console.log( '!!! cart lifted !!!' + lightFixtures )
-  }
 
   updateUser = userInfo => {
     this.setState({ currentUser:
@@ -25,14 +22,17 @@ class App extends Component {
 };
 
   render() {
-    const LandingComponent = (props) => <Landing { ...props } updateUser={this.updateUser} updateCart={this.updateCart} currentUser={this.state.currentUser} />
+    const LandingComponent = (props) => <Landing { ...props } 
+      updateUser={this.updateUser} 
+      currentUser={this.state.currentUser} />
     
     return (
       <Router>
+        <NavComponent/>
         <>
           <Switch>
             <Route exact path="/" render={LandingComponent} />
-            <Route exact path="/checkout" component={Checkout} />
+            {/* <Route exact path="/checkout" component={Checkout} /> */}
             <Route path="/*" component={Landing} />
           </Switch>
         </>
