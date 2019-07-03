@@ -6,13 +6,20 @@ import Checkout from "./Components/Checkout";
 class App extends Component {
   state = {
     currentUser: {
-      name: "no user"
+      name: "no user",
+      cart: []
+
     }
   };
-
+  // updateCart = 
   updateUser = userInfo => {
-    this.setState({ currentUser: userInfo });
-  };
+    this.setState({ currentUser:
+       {
+         name: userInfo,
+         cart: []
+    } 
+  }); 
+};
 
   render() {
     const LandingComponent = (props) => <Landing { ...props } updateUser={this.updateUser} />
