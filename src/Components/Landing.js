@@ -9,8 +9,8 @@ class Landing extends Component {
         return (
             <div className='main'>
             <NavComponent/>
-            <h1>Product Selector</h1>
-            <UnitOverlay/>
+            {/* <h1>Product Selector</h1> */}
+            <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser}/>
             <UserModal updateUser={this.props.updateUser}/>
             </div>
         );

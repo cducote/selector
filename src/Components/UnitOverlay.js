@@ -30,7 +30,6 @@ class UnitOverlay extends Component {
     showModalEntry: false,
     showModalKitchen: false,
     showModalBP: false,
-    cart: [],
     products: []
   };
 
@@ -78,7 +77,8 @@ class UnitOverlay extends Component {
   };
 
   pushToCart = async light => {
-    await this.state.cart.push(light);
+    const cart = this.props.currentUser.cart
+    await cart.push(light);
     this.setState({
       showModalBF: false,
       showModalLF: false,
@@ -92,7 +92,13 @@ class UnitOverlay extends Component {
       showModalBP: false
     });
     console.log(light.partnumber + " added to cart :-)");
+    console.log(this.props.currentUser)
   };
+
+  // cartShifter = async light => {
+  //   const parentCart = this.props.currentUser.cart
+  //   console.log(newCart)
+  // }
 
   handleCloseModalBF = async () => {
     this.setState({ showModalBF: false });

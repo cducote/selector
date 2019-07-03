@@ -8,10 +8,13 @@ class App extends Component {
     currentUser: {
       name: "no user",
       cart: []
-
     }
   };
-  // updateCart = 
+  updateCart = lightFixtures => {
+    
+    console.log( '!!! cart lifted !!!' + lightFixtures )
+  }
+
   updateUser = userInfo => {
     this.setState({ currentUser:
        {
@@ -22,8 +25,8 @@ class App extends Component {
 };
 
   render() {
-    const LandingComponent = (props) => <Landing { ...props } updateUser={this.updateUser} />
-
+    const LandingComponent = (props) => <Landing { ...props } updateUser={this.updateUser} updateCart={this.updateCart} currentUser={this.state.currentUser} />
+    
     return (
       <Router>
         <>
