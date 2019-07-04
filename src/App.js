@@ -20,11 +20,17 @@ class App extends Component {
     } 
   }); 
 };
+updateLight = lightCount => {
+  this.setState({ light: {
+    count: lightCount
+  } })
+}
 
   render() {
     const LandingComponent = (props) => <Landing { ...props } 
       updateUser={this.updateUser} 
-      currentUser={this.state.currentUser} />
+      currentUser={this.state.currentUser}
+      updateLight={this.updateLight} />
     
     return (
       <Router>

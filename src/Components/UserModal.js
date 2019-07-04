@@ -10,6 +10,9 @@ class UserModal extends Component {
     showUserModal: false
   };
 
+  componentDidMount() {
+    this.handleShowUserModal()
+  }
   getUser = async () => {
     this.props.updateUser(this.state.editUser.name)
   }
@@ -35,7 +38,7 @@ class UserModal extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleShowUserModal}>Sign in</Button>
+        {/* <Button onClick={this.handleShowUserModal}>Sign in</Button> */}
         <Modal
           show={this.state.showUserModal}
           onHide={this.handleCloseUserModal}
@@ -52,9 +55,9 @@ class UserModal extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleCloseUserModal}>
+            {/* <Button variant="secondary" onClick={this.handleCloseUserModal}>
               Close
-            </Button>
+            </Button> */}
             
           </Modal.Footer>
         </Modal>

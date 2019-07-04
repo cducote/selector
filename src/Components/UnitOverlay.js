@@ -4,14 +4,15 @@ import unit from "../Images/units/unit.png";
 // import NothingHere from './NothingHere'
 import ImageMapper from "react-image-mapper";
 import ImageMap from "./ImageMap";
-// import sampledata from "./sampledata";
-// import bulbs from "./sampleBulbs";
-import entryLights from './sampleEntry'
-import kitchen from './sampleKitchen'
-import pendants from "./samplePendants"
-import fans from './sampleFans'
-import vanity from './sampleVanity'
-import outdoorLights from './sampleBalcony'
+// import sampledata from "../API/sampledata";
+// import bulbs from "../API/sampleBulbs";
+import entryLights from '../API/sampleEntry'
+import kitchen from '../API/sampleKitchen'
+import pendants from "../API/samplePendants"
+import fans from '../API/sampleFans'
+import vanity from '../API/sampleVanity'
+import outdoorLights from '../API/sampleBalcony'
+import Swal from 'sweetalert2'
 // import axios from 'axios'
 
 let MAP = ImageMap;
@@ -73,7 +74,7 @@ class UnitOverlay extends Component {
   areaCheck = async area => {
     await this.setState({ areaClicked: area.id });
     this.determineModal();
-    console.log(area.coords);
+    // console.log(area.coords);
   };
 
   pushToCart = async light => {
@@ -91,8 +92,14 @@ class UnitOverlay extends Component {
       showModalKitchen: false,
       showModalBP: false
     });
-    console.log(light.partnumber + " added to cart :-)");
-    console.log(this.props.currentUser)
+    console.log(light.partnumber + " added to cart");
+    Swal.fire({
+      position: 'center',
+      type: 'success',
+      title: 'Your fixture has been saved',
+      showConfirmButton: false,
+      timer: 1400
+    })
   };
 
   // cartShifter = async light => {

@@ -18,7 +18,7 @@ class Landing extends Component {
         const done = this.state.done
         let page;
         if (done) {
-            page = <Checkout/>
+            page = <Checkout cart={this.props.currentUser.cart} updateLight={this.props.updateLight}/>
         } else {
             page = <div className='main'>
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser}/>
