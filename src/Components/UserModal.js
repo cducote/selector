@@ -10,9 +10,9 @@ class UserModal extends Component {
     showUserModal: false
   };
 
-  componentDidMount() {
-    this.handleShowUserModal()
-  }
+  // componentDidMount() {
+  //   this.handleShowUserModal()
+  // }
   getUser = async () => {
     this.props.updateUser(this.state.editUser.name)
   }

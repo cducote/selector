@@ -8,7 +8,12 @@ class App extends Component {
   state = {
     currentUser: {
       name: "no user",
-      cart: []
+      cart: [
+        {
+          "partnumber": "TEST ME",
+          "count": "0"
+        }
+      ]
     }
   };
 
@@ -20,10 +25,13 @@ class App extends Component {
     } 
   }); 
 };
-updateLight = lightCount => {
-  this.setState({ light: {
-    count: lightCount
-  } })
+updateLight = newLight => {
+  console.log(newLight)
+  this.setState({ 
+    currentUser: {
+    cart: [
+    newLight
+   ]} })
 }
 
   render() {
