@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 // import NavComponent from './NavComponent'
 import UserModal from './UserModal'
 import Checkout from './Checkout'
+import CheckoutPage from './CheckoutPage';
 
 class Landing extends Component {
 
@@ -18,7 +19,7 @@ class Landing extends Component {
         const done = this.state.done
         let page;
         if (done) {
-            page = <Checkout cart={this.props.currentUser.cart} updateLight={this.props.updateLight}/>
+            page = <CheckoutPage cart={this.props.currentUser.cart} updateLight={this.props.updateLight}/>
         } else {
             page = <div className='main'>
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser}/>

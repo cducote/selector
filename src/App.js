@@ -11,7 +11,7 @@ class App extends Component {
       cart: [
         {
           "partnumber": "TEST ME",
-          "count": "0"
+          "qty": "0"
         }
       ]
     }
