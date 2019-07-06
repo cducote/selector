@@ -49,9 +49,7 @@ class UserModal extends Component {
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Control size="lg" type="text" name='name' value={this.state.editUser.name} onChange={this.handleChange}/>
-                <Button variant="primary" type="submit">
-                Submit
-                </Button>
+                <Button variant="primary" type="submit">Submit</Button>
             </Form>
           </Modal.Body>
           <Modal.Footer>

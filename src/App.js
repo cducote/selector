@@ -8,12 +8,7 @@ class App extends Component {
   state = {
     currentUser: {
       name: "no user",
-      cart: [
-        {
-          "partnumber": "TEST ME",
-          "qty": "0"
-        }
-      ]
+      cart: []
     }
   };
 
@@ -25,20 +20,11 @@ class App extends Component {
     } 
   }); 
 };
-updateLight = newLight => {
-  console.log(newLight)
-  this.setState({ 
-    currentUser: {
-    cart: [
-    newLight
-   ]} })
-}
 
   render() {
     const LandingComponent = (props) => <Landing { ...props } 
       updateUser={this.updateUser} 
-      currentUser={this.state.currentUser}
-      updateLight={this.updateLight} />
+      currentUser={this.state.currentUser} />
     
     return (
       <Router>
@@ -46,8 +32,7 @@ updateLight = newLight => {
         <>
           <Switch>
             <Route exact path="/" render={LandingComponent} />
-            {/* <Route exact path="/checkout" component={Checkout} /> */}
-            <Route path="/*" component={Landing} />
+            <Route path="/*" component={LandingComponent} />
           </Switch>
         </>
       </Router>
