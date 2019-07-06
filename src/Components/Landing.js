@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import UnitOverlay from './UnitOverlay'
 import { Button } from 'react-bootstrap'
-// import NavComponent from './NavComponent'
 import UserModal from './UserModal'
-import Checkout from './Checkout'
 import CheckoutPage from './CheckoutPage';
 
 class Landing extends Component {
