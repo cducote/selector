@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Modal, Container,Image, Card, Row, Col } from "react-bootstrap";
+import { Button, Modal, Container,Image, Card, Row, Col, Popover, OverlayTrigger } from "react-bootstrap";
 import unit from "../Images/units/unit.png";
 // import NothingHere from './NothingHere'
 import ImageMapper from "react-image-mapper";
@@ -102,11 +102,6 @@ class UnitOverlay extends Component {
     })
   };
 
-  // cartShifter = async light => {
-  //   const parentCart = this.props.currentUser.cart
-  //   console.log(newCart)
-  // }
-
   handleCloseModalBF = async () => {
     this.setState({ showModalBF: false });
   };
@@ -169,21 +164,6 @@ class UnitOverlay extends Component {
   };
 
   render() {
-    // const lightCard = bulbs.map((light, i) => {
-    //   return (
-    //     <Card key={i}>
-    //       <Container onClick={() => this.pushToCart(light)}>
-    //         <Row>
-    //           <Col>
-    //             <Image alt="test" src={light.image} height="150"/>
-
-    //             <div id="lightName">{light.partnumber}</div>
-    //           </Col>
-    //         </Row>
-    //       </Container>
-    //     </Card>
-    //   );
-    // });
     const pendantCard = pendants.map((light, i) => {
       return (
         <Card key={i}>
@@ -274,18 +254,29 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-
+    const popover = (
+      <Popover id="popover-basic" title="Getting started...">
+        Click on any square to begin adding light fixtures to your cart
+      </Popover>
+    );
+    
     return (
       <>
+       
         <Container fluid className="unitContainer">
+         <OverlayTrigger target={unit} placement="left" overlay={popover}>
+          <div>
           <ImageMapper
             src={unit}
-            width={800}
+            width={900}
             imgWidth={1920}
             map={MAP}
             onClick={area => this.areaCheck(area)}
           />
+          </div>
+          </OverlayTrigger>
         </Container>
+        
         {/* Bed Fan */}
         <Modal
           className="BedFan"

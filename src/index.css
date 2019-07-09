@@ -16,6 +16,11 @@ div#lightName {
   font-size: 25px;
 }
 
+div.version {
+  display: flex;
+  justify-content: center
+}
+
 .unitContainer {
   display: flex;
   justify-content: center;

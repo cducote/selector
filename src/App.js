@@ -29,10 +29,13 @@ class App extends Component {
     return (
       <Router>
         <NavComponent/>
+        <div className='version'>
+          <p>*alpha v1.01*</p>
+        </div>
         <>
           <Switch>
             <Route exact path="/" render={LandingComponent} />
-            <Route path="/*" component={LandingComponent} />
+            {/* <Route path="/*" component={LandingComponent} /> */}
           </Switch>
         </>
       </Router>

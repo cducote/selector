@@ -22,7 +22,7 @@ class Landing extends Component {
             page = <div className='main'>
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser}/>
                         <UserModal updateUser={this.props.updateUser}/>
-                        <Button variant='danger' onClick={this.handlePageChange}>done</Button>
+                        <Button variant='danger' onClick={this.handlePageChange}>Checkout</Button>
                    </div>
         }
         return (
