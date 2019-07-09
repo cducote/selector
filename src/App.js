@@ -8,7 +8,11 @@ class App extends Component {
   state = {
     currentUser: {
       name: "no user",
-      cart: []
+      cart: [{
+        "partnumber": "TEST ME",
+        "image": require('./Images/lights/10L27A19M8WD.jpg'),
+        "qty": "0"
+      }]
     }
   };
 

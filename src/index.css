@@ -10,6 +10,12 @@
     color: white;
 }
 
+.container#greyBack {
+  background: grey;
+  height: 100%;
+  border: 1px solid black
+}
+
 div#lightName {
   display: flex;
   text-align: center;
