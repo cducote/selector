@@ -92,6 +92,8 @@ class UnitOverlay extends Component {
       showModalKitchen: false,
       showModalBP: false
     });
+    this.props.updateCartCount()
+    this.props.updateCartCountNav()
     console.log(light.partnumber + " added to cart");
     Swal.fire({
       position: 'center',
@@ -100,6 +102,7 @@ class UnitOverlay extends Component {
       showConfirmButton: false,
       timer: 1400
     })
+    
   };
 
   handleCloseModalBF = async () => {
@@ -172,7 +175,7 @@ class UnitOverlay extends Component {
               <Col>
                 <Image alt="test" src={light.image} height="150"/>
 
-                <div id="lightName">{light.partnumber}</div>
+                <div>{light.partnumber}</div>
               </Col>
             </Row>
           </Container>
@@ -187,7 +190,7 @@ class UnitOverlay extends Component {
               <Col>
                 <Image alt="test" src={light.image} height="150"/>
 
-                <div id="lightName">{light.partnumber}</div>
+                <div>{light.partnumber}</div>
               </Col>
             </Row>
           </Container>
@@ -202,7 +205,7 @@ class UnitOverlay extends Component {
               <Col>
                 <Image alt="test" src={light.image} height="150"/>
 
-                <div id="lightName">{light.partnumber}</div>
+                <div>{light.partnumber}</div>
               </Col>
             </Row>
           </Container>
@@ -217,7 +220,7 @@ class UnitOverlay extends Component {
               <Col>
                 <Image alt="test" src={light.image} height="150"/>
 
-                <div id="lightName">{light.partnumber}</div>
+                <div>{light.partnumber}</div>
               </Col>
             </Row>
           </Container>
@@ -232,7 +235,7 @@ class UnitOverlay extends Component {
               <Col>
                 <Image alt="test" src={light.image} height="150"/>
 
-                <div id="lightName">{light.partnumber}</div>
+                <div>{light.partnumber}</div>
               </Col>
             </Row>
           </Container>
@@ -247,7 +250,7 @@ class UnitOverlay extends Component {
               <Col>
                 <Image alt="test" src={light.image} height="150"/>
 
-                <div id="lightName">{light.partnumber}</div>
+                <div>{light.partnumber}</div>
               </Col>
             </Row>
           </Container>

@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap'
+import { FaShoppingCart } from 'react-icons/fa'
 
 class NavComponent extends Component {
+    state= {
+        cartCount: this.props.currentUser.cart.length
+    }
+    
+    updateCartCountNav = () => {
+        this.setState({ cartCount: this.props.currentUser.cart.length })
+    }
+    
+
     render() {
         return (
             <>
@@ -18,6 +28,7 @@ class NavComponent extends Component {
                         <Nav.Link href='/'> Products </Nav.Link>
                         <Nav.Link href='/'> Our Services </Nav.Link>
                         <Nav.Link href='/'> Contact Us </Nav.Link>
+                        <Nav.Link href='/'> <FaShoppingCart/> ({this.state.cartCount})</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
