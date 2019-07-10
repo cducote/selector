@@ -33,9 +33,9 @@ class App extends Component {
     return (
       <Router>
         <NavComponent/>
-        <div className='version'>
+        {/* <div className='version'>
           <p>*alpha v1.01*</p>
-        </div>
+        </div> */}
         <>
           <Switch>
             <Route exact path="/" render={LandingComponent} />

@@ -3,6 +3,12 @@ import UnitOverlay from './UnitOverlay'
 import { Button } from 'react-bootstrap'
 import UserModal from './UserModal'
 import CheckoutPage from './CheckoutPage';
+import styled from 'styled-components'
+
+const Page = styled.div`
+    background: grey;
+    height: 900px;
+`
 
 class Landing extends Component {
 
@@ -17,7 +23,9 @@ class Landing extends Component {
         const done = this.state.done
         let page;
         if (done) {
-            page = <CheckoutPage cart={this.props.currentUser.cart} updateLight={this.props.updateLight}/>
+            page =  <Page>
+                        <CheckoutPage cart={this.props.currentUser.cart} updateLight={this.props.updateLight}/>
+                    </Page>
         } else {
             page = <div className='main'>
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser}/>

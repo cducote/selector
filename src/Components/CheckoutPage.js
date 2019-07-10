@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from 'styled-components'
 import {
   Container,
   Card,
@@ -8,6 +9,28 @@ import {
   Col,
   Button
 } from "react-bootstrap";
+const StyledContainer = styled(Container)`
+  &&& {
+    background: white;
+    border: 1px solid black;
+  }
+`
+const StyledRow = styled(Row)`
+  &&& {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  }
+`
+const StyledQty = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.2em;
+  font-weight: bold;
+`
 
 function Light({ index, light, changeQty }) {
   const [value, setValue] = useState("");
@@ -17,33 +40,40 @@ function Light({ index, light, changeQty }) {
     changeQty(index, value);
     setValue("");
   };
+
   return (
-    <Container>
+    <StyledContainer>
       <div className='paper'>
       <Row>
         <Col>
+          <StyledRow>
           <Image alt="test" src={light.image} height="100" />
+          <div id="lightName">{light.partnumber}</div>
+          </StyledRow>
         </Col>
         <Col>
-          <div id="lightName">{light.partnumber}</div>
-          {/* <Button>Quantity</Button> */}
+          <StyledQty>
           <Form onSubmit={handleSubmit} light={light}>
             <Form.Control
               size="sm"
               type="text"
               name="count"
+              placeholder='enter quantity'
               value={value}
               onChange={e => setValue(e.target.value)}
             />
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
           </Form>
+          </StyledQty>
         </Col>
-        <Col>{light.qty}</Col>
+        <Col>
+          <StyledQty>
+            {light.qty}
+          </StyledQty>
+        </Col>
       </Row>
       </div>  
-    </Container>
+    </StyledContainer>
+   
   );
 }
 
