@@ -5,6 +5,8 @@ import { FaShoppingCart } from 'react-icons/fa'
 import UserModal from './UserModal'
 import CheckoutPage from './CheckoutPage';
 import styled from 'styled-components'
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
 
 const Page = styled.div`
     background: grey;
@@ -24,13 +26,26 @@ class Landing extends Component {
     updateCartCount = () => {
         this.setState({ cartCount: this.props.currentUser.cart.length })
     }
+    printDocument = () => {
+        const input = document.getElementById('print');
+        html2canvas(input)
+          .then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF();
+            pdf.addImage(imgData, 'JPEG', -22, 0, 250, 300);
+            pdf.save("download.pdf");
+          })
+      }
   
     render() {
         const done = this.state.done
         let page;
         if (done) {
-            page =  <Page>
+            page =  <Page id='print'>
+                        <div>
                         <CheckoutPage cart={this.props.currentUser.cart} updateLight={this.props.updateLight}/>
+                        </div>
+                        <button onClick={this.printDocument}>Print</button>
                     </Page>
         } else {
             page = <div className='main'>

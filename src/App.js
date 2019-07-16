@@ -9,11 +9,13 @@ class App extends Component {
     count: 0,
     currentUser: {
       name: "no user",
-      cart: [{
-        "partnumber": "TEST ME",
-        "image": require('./Images/lights/10L27A19M8WD.jpg'),
-        "qty": "0"
-      }]
+      cart: [
+      //   {
+      //   "partnumber": "TEST ME",
+      //   "image": require('./Images/lights/10L27A19M8WD.jpg'),
+      //   "qty": "0"
+      // }
+    ]
     },
     
   };

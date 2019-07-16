@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import styled from 'styled-components'
 import {
   Container,
-  Card,
   Image,
   Row,
   Form,
   Col,
-  Button
 } from "react-bootstrap";
+
 const StyledContainer = styled(Container)`
   &&& {
     background: white;
@@ -77,6 +76,7 @@ function Light({ index, light, changeQty }) {
   );
 }
 
+
 function CheckoutPage({ cart }) {
   console.log(cart);
   const [finalCart, setCart] = useState(cart);
@@ -85,6 +85,18 @@ function CheckoutPage({ cart }) {
     newCart[index].qty = qty;
     setCart(newCart);
   };
+
+  // const printDocument = () => {
+  //   const input = document.getElementById('print');
+  //   html2canvas(input)
+  //     .then((canvas) => {
+  //       const imgData = canvas.toDataURL('image/png');
+  //       const pdf = new jsPDF();
+  //       pdf.addImage(imgData, 'JPEG', 0, 0);
+  //       // pdf.output('dataurlnewwindow');
+  //       pdf.save("download.pdf");
+  //     })
+  // }
 
   return (
     <div>
