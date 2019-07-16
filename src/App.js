@@ -41,12 +41,9 @@ class App extends Component {
     return (
       <Router>
         <NavComponent currentUser={this.state.currentUser} cartCount={this.state.cartCount}/>
-        {/* <div className='version'>
-          <p>*alpha v1.01*</p>
-        </div> */}
         <>
           <Switch>
-            <Route exact path="/" render={LandingComponent} />
+            <Route exact path={`${process.env.PUBLIC_URL}/`} render={LandingComponent} />
           </Switch>
         </>
       </Router>
