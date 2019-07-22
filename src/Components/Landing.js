@@ -42,6 +42,7 @@ class Landing extends Component {
         let page;
         if (done) {
             page =  <Page id='print'>
+                        <p>Checkout</p>
                         <div>
                         <CheckoutPage cart={this.props.currentUser.cart} updateLight={this.props.updateLight}/>
                         </div>
@@ -49,6 +50,7 @@ class Landing extends Component {
                     </Page>
         } else {
             page = <div className='main'>
+                    <h1>Selector</h1>
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>
                         <UserModal updateUser={this.props.updateUser}/>
                         <Button variant='info' onClick={this.handlePageChange}><FaShoppingCart/> Checkout ({this.state.cartCount})</Button>

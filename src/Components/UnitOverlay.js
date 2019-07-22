@@ -262,21 +262,35 @@ class UnitOverlay extends Component {
         Click on any square to begin adding light fixtures to your cart
       </Popover>
     );
-    
+    let small = 375;
+    let medium = 750;
+    let large = 1024
+    let responsive = 400
+    let width = window.innerWidth
+    if (width >= 900) {
+      responsive = large
+    } else if (width >= 700){
+      responsive = medium
+    } else {
+      responsive = small
+    }
+    let responsiveUnitMapper = (
+      <ImageMapper
+            src={unit}
+            width={responsive}
+            imgWidth={1920}
+            map={MAP}
+            onClick={area => this.areaCheck(area)}
+          />
+    )
     return (
       <>
        
         <Container fluid className="unitContainer">
          <OverlayTrigger target={unit} placement="left" overlay={popover}>
-          <div>
-          <ImageMapper
-            src={unit}
-            width={900}
-            imgWidth={1920}
-            map={MAP}
-            onClick={area => this.areaCheck(area)}
-          />
-          </div>
+            <div>
+            {responsiveUnitMapper}
+            </div>
           </OverlayTrigger>
         </Container>
         

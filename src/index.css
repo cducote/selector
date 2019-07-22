@@ -16,11 +16,17 @@
   border: 1px solid black
 }
 
+html {margin:0;padding:0;height:100%;}
+
 div#lightName {
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+div.main {
+  height: 100%;
 }
 
 div.version {
@@ -31,12 +37,13 @@ div.version {
 .unitContainer {
   display: flex;
   justify-content: center;
+  align-self: center;
 }
 
 h1 {
   font-family: 'Sacramento', cursive;
-  font-size: 100px;
+  font-size: 50px;
   text-align: center;
-  margin-top: 10px;
+  margin: 5px;
 }
 
