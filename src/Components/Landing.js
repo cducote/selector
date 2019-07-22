@@ -10,7 +10,7 @@ import html2canvas from 'html2canvas'
 
 const Page = styled.div`
     background: grey;
-    height: 1200px;
+    height: 100%;
 `
 
 class Landing extends Component {

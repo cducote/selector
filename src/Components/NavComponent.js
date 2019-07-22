@@ -15,7 +15,6 @@ class NavComponent extends Component {
         this.updateCartCountNav()
     }
     
-
     render() {
         return (
             <>
@@ -32,7 +31,7 @@ class NavComponent extends Component {
                         <Nav.Link href='/productspages/products.php'> Products </Nav.Link>
                         <Nav.Link href='/index.html#services'> Our Services </Nav.Link>
                         <Nav.Link href='/index.html#contact'> Contact Us </Nav.Link>
-                        <Nav.Link href='/'> <FaShoppingCart/> ({this.state.cartCount})</Nav.Link>
+                        <Nav.Link> <FaShoppingCart/> ({this.state.cartCount})</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
