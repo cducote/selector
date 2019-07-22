@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap'
 import { FaShoppingCart } from 'react-icons/fa'
 
+
 class NavComponent extends Component {
     state= {
-        cartCount: this.props.currentUser.cart.length
+        cartCount: this.props.cartCount
     }
     
-    updateCartCountNav = () => {
-        this.setState({ cartCount: this.props.currentUser.cart.length })
+    updateCartCountNav = async () => {
+        await this.setState({ cartCount: this.props.currentUser.cart.length })
+    }
+    componentWillReceiveProps(){
+        this.updateCartCountNav()
     }
     
 
@@ -24,10 +28,10 @@ class NavComponent extends Component {
                     <Nav className='mr-auto'/>
                     <Nav className='justify-content-end'>
                     <Nav.Link href='/'> Home </Nav.Link>
-                        <Nav.Link href='/'> About </Nav.Link>
-                        <Nav.Link href='/'> Products </Nav.Link>
-                        <Nav.Link href='/'> Our Services </Nav.Link>
-                        <Nav.Link href='/'> Contact Us </Nav.Link>
+                        <Nav.Link href='/index.html#aboutsection'> About </Nav.Link>
+                        <Nav.Link href='/productspages/products.php'> Products </Nav.Link>
+                        <Nav.Link href='/index.html#services'> Our Services </Nav.Link>
+                        <Nav.Link href='/index.html#contact'> Contact Us </Nav.Link>
                         <Nav.Link href='/'> <FaShoppingCart/> ({this.state.cartCount})</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

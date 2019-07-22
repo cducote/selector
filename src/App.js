@@ -9,13 +9,7 @@ class App extends Component {
     count: 0,
     currentUser: {
       name: "no user",
-      cart: [
-      //   {
-      //   "partnumber": "TEST ME",
-      //   "image": require('./Images/lights/10L27A19M8WD.jpg'),
-      //   "qty": "0"
-      // }
-    ]
+      cart: []
     },
     
   };
@@ -28,8 +22,8 @@ class App extends Component {
     } 
   }); 
 };
-  updateCartCountNav = () => {
-    this.setState({ count: this.state.currentUser.cart.length })
+  updateCartCountNav = async() => {
+    await this.setState({ count: this.state.currentUser.cart.length })
   }
 
   render() {
@@ -40,7 +34,7 @@ class App extends Component {
     
     return (
       <Router>
-        <NavComponent currentUser={this.state.currentUser} cartCount={this.state.cartCount}/>
+        <NavComponent currentUser={this.state.currentUser} cartCount={this.state.currentUser.cart.length}/>
         <>
           <Switch>
             <Route exact path={`${process.env.PUBLIC_URL}/`} render={LandingComponent} />
