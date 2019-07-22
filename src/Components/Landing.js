@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import UnitOverlay from './UnitOverlay'
+import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import { FaShoppingCart } from 'react-icons/fa'
 import UserModal from './UserModal'
 import CheckoutPage from './CheckoutPage';
-import styled from 'styled-components'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 
 const Page = styled.div`
     background: grey;
     height: 100%;
+`
+const StyledButton = styled(Button)`
+    &&&{
+        margin-top: 20px;
+        position: fixed;
+        bottom: 0;
+        align-self: center;  
+       }
 `
 
 class Landing extends Component {
@@ -53,7 +61,7 @@ class Landing extends Component {
                     <h1>Selector</h1>
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>
                         <UserModal updateUser={this.props.updateUser}/>
-                        <Button variant='info' onClick={this.handlePageChange}><FaShoppingCart/> Checkout ({this.state.cartCount})</Button>
+                        <StyledButton variant='info' onClick={this.handlePageChange}><FaShoppingCart/> Checkout ({this.state.cartCount})</StyledButton>
                    </div>
         }
         return (
