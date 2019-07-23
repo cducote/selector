@@ -21,14 +21,21 @@ const StyledButton = styled(Button)`
        }
 `
 
+  
+//   const uniqueArray = things.thing.filter((thing,index) => {
+//     return index === things.thing.findIndex(obj => {
+//       return JSON.stringify(obj) === JSON.stringify(thing);
+//     });
+//   });
+
 class Landing extends Component {
 
     state = {
-        done: false,
+        doneShopping: false,
         cartCount: this.props.currentUser.cart.length
     }
     handlePageChange = async () => {
-        this.setState({ done: true })
+        this.setState({ doneShopping: true })
     }
     
     updateCartCount = () => {
@@ -44,11 +51,25 @@ class Landing extends Component {
             pdf.save("download.pdf");
           })
       }
+    removeTheDupe = () => {
+        const currentUser = this.props.currentUser
+        const cartArray = currentUser.cart.filter((light,index) => {
+            return index === currentUser.cart.findIndex(obj => {
+            return JSON.stringify(obj) === JSON.stringify(light);
+        });
+    });
+        // console.log(cartArray)
+        currentUser.cart.length = 0
+        // console.log(currentUser.cart)
+        currentUser.cart = cartArray
+        // console.log(currentUser.cart)
+    }
+      
   
     render() {
-        const done = this.state.done
+        const doneShopping = this.state.doneShopping
         let page;
-        if (done) {
+        if (doneShopping) {
             page =  <Page id='print'>
                         <p>Checkout</p>
                         <div>
@@ -62,6 +83,7 @@ class Landing extends Component {
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>
                         <UserModal updateUser={this.props.updateUser}/>
                         <StyledButton variant='info' onClick={this.handlePageChange}><FaShoppingCart/> Checkout ({this.state.cartCount})</StyledButton>
+                        <Button onClick={this.removeTheDupe}>remove the dupe</Button>
                    </div>
         }
         return (
