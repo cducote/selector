@@ -21,26 +21,30 @@ const StyledButton = styled(Button)`
        }
 `
 
-  
-//   const uniqueArray = things.thing.filter((thing,index) => {
-//     return index === things.thing.findIndex(obj => {
-//       return JSON.stringify(obj) === JSON.stringify(thing);
-//     });
-//   });
-
 class Landing extends Component {
 
     state = {
         doneShopping: false,
         cartCount: this.props.currentUser.cart.length
     }
+
     handlePageChange = async () => {
+        //handlePageChange now removes any dupes before page change
+        const currentUser = this.props.currentUser
+        const cartArray = currentUser.cart.filter((light,index) => {
+            return index === currentUser.cart.findIndex(obj => {
+            return JSON.stringify(obj) === JSON.stringify(light);
+        });
+    });
+        currentUser.cart.length = 0
+        currentUser.cart = cartArray
         this.setState({ doneShopping: true })
     }
-    
+       
     updateCartCount = () => {
         this.setState({ cartCount: this.props.currentUser.cart.length })
     }
+
     printDocument = () => {
         const input = document.getElementById('print');
         html2canvas(input)
@@ -51,6 +55,7 @@ class Landing extends Component {
             pdf.save("download.pdf");
           })
       }
+
     removeTheDupe = () => {
         const currentUser = this.props.currentUser
         const cartArray = currentUser.cart.filter((light,index) => {
@@ -58,14 +63,10 @@ class Landing extends Component {
             return JSON.stringify(obj) === JSON.stringify(light);
         });
     });
-        // console.log(cartArray)
         currentUser.cart.length = 0
-        // console.log(currentUser.cart)
         currentUser.cart = cartArray
-        // console.log(currentUser.cart)
     }
       
-  
     render() {
         const doneShopping = this.state.doneShopping
         let page;
@@ -83,7 +84,6 @@ class Landing extends Component {
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>
                         <UserModal updateUser={this.props.updateUser}/>
                         <StyledButton variant='info' onClick={this.handlePageChange}><FaShoppingCart/> Checkout ({this.state.cartCount})</StyledButton>
-                        <Button onClick={this.removeTheDupe}>remove the dupe</Button>
                    </div>
         }
         return (
