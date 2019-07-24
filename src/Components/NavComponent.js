@@ -16,6 +16,9 @@ class NavComponent extends Component {
     }
     
     render() {
+        let styles = {
+            color: 'white'
+        }
         return (
             <>
             <Navbar expand='lg' sticky="top">
@@ -30,8 +33,9 @@ class NavComponent extends Component {
                         <Nav.Link href='/index.html#aboutsection'> About </Nav.Link>
                         <Nav.Link href='/productspages/products.php'> Products </Nav.Link>
                         <Nav.Link href='/index.html#services'> Our Services </Nav.Link>
+                        <Nav.Link href='/selection2' style={styles}> Product Selector </Nav.Link>
                         <Nav.Link href='/index.html#contact'> Contact Us </Nav.Link>
-                        <Nav.Link> <FaShoppingCart/> ({this.state.cartCount})</Nav.Link>
+                        <Nav.Link style={styles}> <FaShoppingCart/> ({this.state.cartCount})</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
