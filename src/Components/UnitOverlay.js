@@ -74,7 +74,6 @@ class UnitOverlay extends Component {
   areaCheck = async area => {
     await this.setState({ areaClicked: area.id });
     this.determineModal();
-    // console.log(area.coords);
   };
 
   pushToCart = async light => {
@@ -287,7 +286,7 @@ class UnitOverlay extends Component {
       <>
        
         <Container fluid className="unitContainer">
-         <OverlayTrigger target={unit} placement="left" overlay={popover}>
+         <OverlayTrigger overlay={popover}>
             <div>
             {responsiveUnitMapper}
             </div>

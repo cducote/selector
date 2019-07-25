@@ -9,7 +9,7 @@ import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 
 const Page = styled.div`
-    background: grey;
+    background: white;
     height: 100%;
 `
 const StyledButton = styled(Button)`
