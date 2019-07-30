@@ -173,9 +173,11 @@ class UnitOverlay extends Component {
             <Row>
               <Col>
                 <Image alt="test" src={light.image} height="150"/>
-
-                <div>{light.partnumber}</div>
-              </Col>
+                </Col>
+              <Col>
+                <div className='partNumber'>{light.partnumber}</div>
+                </Col>
+              
             </Row>
           </Container>
         </Card>

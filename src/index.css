@@ -32,6 +32,23 @@ div.main {
   justify-content: center;
 }
 
+@media only screen and (min-width: 375px) {
+  div.partNumber {
+    padding-top: 60px;
+    font-size: 1em;
+  }
+}
+/* div.partNumber {
+  padding-top: 60px;
+  font-size: 1.5em;
+} */
+@media only screen and (min-width: 600px) {
+  div.partNumber {
+    padding-top: 60px;
+    font-size: 1.5em;
+  }
+}
+
 div.version {
   display: flex;
   justify-content: center
