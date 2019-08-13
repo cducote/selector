@@ -12,7 +12,7 @@ import pendants from "../API/samplePendants"
 import fans from '../API/sampleFans'
 import vanity from '../API/sampleVanity'
 import outdoorLights from '../API/sampleBalcony'
-import Swal from 'sweetalert2'
+
 // import axios from 'axios'
 
 let MAP = ImageMap;
@@ -94,14 +94,6 @@ class UnitOverlay extends Component {
     this.props.updateCartCount()
     this.props.updateCartCountNav()
     console.log(light.partnumber + " added to cart");
-    Swal.fire({
-      position: 'center',
-      type: 'success',
-      title: 'Your fixture has been saved',
-      showConfirmButton: false,
-      timer: 1400
-    })
-    
   };
 
   handleCloseModalBF = async () => {
@@ -258,11 +250,11 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    const popover = (
-      <Popover id="popover-basic" title="Getting started...">
-        Click on any square to begin adding light fixtures to your cart
-      </Popover>
-    );
+    // const popover = (
+    //   <Popover id="popover-basic" title="Getting started...">
+    //     Click on any square to begin adding light fixtures to your cart
+    //   </Popover>
+    // );
     let small = 375;
     let medium = 750;
     let large = 1024
@@ -288,11 +280,11 @@ class UnitOverlay extends Component {
       <>
        
         <Container fluid className="unitContainer">
-         <OverlayTrigger overlay={popover}>
+        
             <div>
-            {responsiveUnitMapper}
+              {responsiveUnitMapper}
             </div>
-          </OverlayTrigger>
+         
         </Container>
         
         {/* Bed Fan */}
