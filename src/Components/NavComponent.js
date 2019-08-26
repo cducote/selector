@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap'
-import { FaShoppingCart } from 'react-icons/fa'
-
 
 class NavComponent extends Component {
     state= {

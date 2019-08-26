@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import UnitOverlay from './UnitOverlay'
+import Cooridor from './Cooridor'
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
-import { FaShoppingCart } from 'react-icons/fa'
 import UserModal from './UserModal'
-import CheckoutPage from './CheckoutPage';
+// import CheckoutPage from './CheckoutPage';
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 
-const Page = styled.div`
-    background: white;
-    height: 100%;
-`
 const StyledButton = styled(Button)`
     &&&{
         margin-top: 20px;
@@ -72,7 +68,7 @@ class Landing extends Component {
         let page;
         if (doneShopping) {
             page =  <>
-                        
+                      <Cooridor/>  
                     </>
         } else {
             page = <div className='main'>
