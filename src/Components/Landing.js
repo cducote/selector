@@ -67,7 +67,8 @@ class Landing extends Component {
         const doneShopping = this.state.doneShopping
         let page;
         if (doneShopping) {
-            page =  <>
+            page =  <> 
+                    <h1>Selector</h1>
                       <Cooridor/>  
                     </>
         } else {
