@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import UserModal from './UserModal'
 // import CheckoutPage from './CheckoutPage';
-import jsPDF from 'jspdf'
-import html2canvas from 'html2canvas'
+// import jsPDF from 'jspdf'
+// import html2canvas from 'html2canvas'
 
 const StyledButton = styled(Button)`
     &&&{
@@ -41,16 +41,16 @@ class Landing extends Component {
         this.setState({ cartCount: this.props.currentUser.cart.length })
     }
 
-    printDocument = () => {
-        const input = document.getElementById('print');
-        html2canvas(input)
-          .then((canvas) => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF();
-            pdf.addImage(imgData, 'JPEG', -22, 0, 250, 300);
-            pdf.save("download.pdf");
-          })
-      }
+    // printDocument = () => {
+    //     const input = document.getElementById('print');
+    //     html2canvas(input)
+    //       .then((canvas) => {
+    //         const imgData = canvas.toDataURL('image/png');
+    //         const pdf = new jsPDF();
+    //         pdf.addImage(imgData, 'JPEG', -22, 0, 250, 300);
+    //         pdf.save("download.pdf");
+    //       })
+    //   }
 
     removeTheDupe = () => {
         const currentUser = this.props.currentUser
@@ -69,7 +69,7 @@ class Landing extends Component {
         if (doneShopping) {
             page =  <> 
                     <h1>Selector</h1>
-                      <Cooridor/>  
+                      <Cooridor  updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>  
                     </>
         } else {
             page = <div className='main'>

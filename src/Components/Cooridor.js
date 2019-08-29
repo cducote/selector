@@ -32,6 +32,19 @@ class Cooridor extends Component {
     this.determineModal();
   };
 
+  pushToCartC = async light => {
+    // let areaClicked = this.state.areaClicked
+    const cart2 = this.props.currentUser.cart
+    await cart2.push(light);
+    this.setState({
+      showModalHP: false,
+      showModalHL: false,
+      showModalSP: false
+    });
+    this.props.updateCartCount()
+    this.props.updateCartCountNav()
+  }
+
   handleCloseModalHP = async () => {
     this.setState({ showModalHP: false });
   };
@@ -58,7 +71,7 @@ class Cooridor extends Component {
       const pendantCard = pendants.map((light, i) => {
         return (
           <Card key={i}>
-            <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
+            <Container onClick={() => this.pushToCartC(light)}  style={cardStyles}>
                   <Image alt="test" src={light.image} height="133"/>
                   <div className='partNumber'>{light.partnumber}</div>
             </Container>
@@ -68,7 +81,7 @@ class Cooridor extends Component {
       const entryCard = entryLights.map((light, i) => {
         return (
           <Card key={i}>
-            <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
+            <Container onClick={() => this.pushToCartC(light)}  style={cardStyles}>
                   <Image alt="test" src={light.image} height="133"/>
                   <div>{light.partnumber}</div>
             </Container>

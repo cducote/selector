@@ -98,11 +98,11 @@ class UnitOverlay extends Component {
   };
   placeSpan(light, areaClicked) {
     console.log(light.image)
-    console.log(areaClicked.center)
+    console.log(areaClicked)
     let imgSrc = light.image
-    let spanCoords = this.state.areaClicked.center
+    let spanCoords = this.state.areaClicked.scaledCoords
     this.setState({ selectedLight: light })
-
+    this.setState({ products: [...this.state.products, {imgSrc, spanCoords} ]  })
   }
 
   placeSelectedLight = light => {
@@ -175,6 +175,25 @@ class UnitOverlay extends Component {
     let cardStyles = {
       textAlign: 'center'
     }
+
+    const selectedProduct = this.state.products.map((e, i) =>(
+      <div key={i}>
+        <img 
+          alt='x' 
+          src={e.imgSrc} 
+          style={{
+            position: "absolute",
+            zIndex: 1,
+            left: `${e.spanCoords[0]}px`,
+            top: `${e.spanCoords[1]}px`,
+            width: 100,
+            height: 100,
+            pointerEvents: "none"
+          }}
+          />
+      </div>
+    ))
+
     const pendantCard = pendants.map((light, i) => {
       return (
         <Card key={i}>
@@ -260,6 +279,7 @@ class UnitOverlay extends Component {
             map={MAP}
             onClick={area => this.areaCheck(area)}
           />
+          
     )
     
     return (
@@ -268,7 +288,11 @@ class UnitOverlay extends Component {
         <Container fluid className="unitContainer">
         
             <div>
+           
               {responsiveUnitMapper}
+              {selectedProduct}
+             
+              
             </div>
             {/* {Object.keys(this.props.currentUser.cart)
                 .filter(areaId => !this.props.currentUser.cart.show)
