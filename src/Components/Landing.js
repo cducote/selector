@@ -70,6 +70,7 @@ class Landing extends Component {
             page =  <> 
                     <h1>Selector</h1>
                       <Cooridor  updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>  
+                      {/* <Button onClick={this.handlePageChangeFinal}>FINAL</Button> */}
                     </>
         } else {
             page = <div className='main'>

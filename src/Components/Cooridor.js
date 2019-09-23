@@ -14,6 +14,8 @@ class Cooridor extends Component {
     showModalHP: false,
     showModalHL: false,
     showModdalSP: false,
+    products: [],
+    selectedProduct: null
   }
 
   determineModal() {
@@ -33,7 +35,7 @@ class Cooridor extends Component {
   };
 
   pushToCartC = async light => {
-    // let areaClicked = this.state.areaClicked
+    let areaClicked = this.state.areaClicked
     const cart2 = this.props.currentUser.cart
     await cart2.push(light);
     this.setState({
@@ -43,6 +45,17 @@ class Cooridor extends Component {
     });
     this.props.updateCartCount()
     this.props.updateCartCountNav()
+    this.placeSpan(light, areaClicked)
+    await this.setState({ areaClicked: null })
+  }
+
+  placeSpan(light, areaClicked) {
+    console.log(light.image)
+    console.log(areaClicked)
+    let imgSrc = light.image
+    let spanCoords = this.state.areaClicked.scaledCoords
+    this.setState({ selectedLight: light })
+    this.setState({ products: [...this.state.products, {imgSrc, spanCoords} ]  })
   }
 
   handleCloseModalHP = async () => {
@@ -68,6 +81,23 @@ class Cooridor extends Component {
       let cardStyles = {
         textAlign: 'center'
       }
+
+      const selectedProduct = this.state.products.map((e, i) =>(
+        <img key={i} 
+          alt='x' 
+          src={e.imgSrc} 
+          style={{
+            position: "absolute",
+            zIndex: 2,
+            left: `${e.spanCoords[0] + 25}px`,
+            top: `${e.spanCoords[1] + 10}px`,
+            width: 100,
+            height: 100,
+            pointerEvents: "none"
+          }}
+          />
+      
+    ))
       const pendantCard = pendants.map((light, i) => {
         return (
           <Card key={i}>
@@ -113,11 +143,14 @@ class Cooridor extends Component {
 
         return (
             <>
-                <Container fluid className="unitContainer">
+                <Container className="unitContainerC">
                      <div>
                         {responsiveUnitMapper}
+                        {selectedProduct}
                      </div>
+                    
                 </Container>
+               
 
                 {/* Hallway Pendant */}
         <Modal

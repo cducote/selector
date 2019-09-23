@@ -177,21 +177,20 @@ class UnitOverlay extends Component {
     }
 
     const selectedProduct = this.state.products.map((e, i) =>(
-      <div key={i}>
-        <img 
+        <img key={i} 
           alt='x' 
           src={e.imgSrc} 
           style={{
             position: "absolute",
-            zIndex: 1,
-            left: `${e.spanCoords[0]}px`,
-            top: `${e.spanCoords[1]}px`,
+            zIndex: 2,
+            left: `${e.spanCoords[0] + 25}px`,
+            top: `${e.spanCoords[1] + 10}px`,
             width: 100,
             height: 100,
             pointerEvents: "none"
           }}
           />
-      </div>
+      
     ))
 
     const pendantCard = pendants.map((light, i) => {
@@ -254,11 +253,7 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    // const popover = (
-    //   <Popover id="popover-basic" title="Getting started...">
-    //     Click on any square to begin adding light fixtures to your cart
-    //   </Popover>
-    // );
+   
     let small = 375;
     let medium = 750;
     let large = 1024
@@ -285,35 +280,16 @@ class UnitOverlay extends Component {
     return (
       <>
        
-        <Container fluid className="unitContainer">
+        <Container 
+        className="unitContainer"
+        >
         
             <div>
-           
+            
               {responsiveUnitMapper}
               {selectedProduct}
              
-              
             </div>
-            {/* {Object.keys(this.props.currentUser.cart)
-                .filter(areaId => !this.props.currentUser.cart.show)
-                .map(areaId => {
-                  console.log(this.props.currentUser.cart)
-                  return (
-                    <img
-                      key={areaId}
-                      alt='test'
-                      src={this.imageSrc}
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                        left: `${this.spanCoords[0]}px`,
-                        top: `${this.spanCoords[1]}px`,
-                        pointerEvents: "none"
-                      }}
-                      />
-                  )
-                })}
-          */}
         </Container>
         
         {/* Bed Fan */}

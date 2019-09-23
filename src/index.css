@@ -52,8 +52,16 @@ div.version {
 }
 
 .unitContainer {
-  display: flex;
+  position: relative;
+  display: inline-block;
   justify-content: center;
+  align-self: center;
+}
+
+.unitContainerC {
+  position: relative;
+  display: inline-block;
+  /* justify-content: center; */
   align-self: center;
 }
 
