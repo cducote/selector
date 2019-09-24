@@ -4,6 +4,7 @@ import Cooridor from './Cooridor'
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import UserModal from './UserModal'
+import SelectionTable from './SelectionTable'
 // import CheckoutPage from './CheckoutPage';
 // import jsPDF from 'jspdf'
 // import html2canvas from 'html2canvas'
@@ -20,7 +21,8 @@ const StyledButton = styled(Button)`
 class Landing extends Component {
 
     state = {
-        doneShopping: false,
+        corridorSelection: false,
+        finalPageShow: false,
         cartCount: this.props.currentUser.cart.length
     }
 
@@ -34,9 +36,13 @@ class Landing extends Component {
     });
         currentUser.cart.length = 0
         currentUser.cart = cartArray
-        this.setState({ doneShopping: true })
+        this.setState({ corridorSelection: true })
     }
-       
+    
+    handlePageChangeFinal = async ()=> {
+        this.setState({ corridorSelection: false })
+        this.setState({ finalPageShow: true })
+    }
     updateCartCount = () => {
         this.setState({ cartCount: this.props.currentUser.cart.length })
     }
@@ -64,14 +70,22 @@ class Landing extends Component {
     }
       
     render() {
-        const doneShopping = this.state.doneShopping
+        const corridorSelection = this.state.corridorSelection
+        const finalPage = this.state.finalPageShow
         let page;
-        if (doneShopping) {
+        if (corridorSelection) {
             page =  <> 
                     <h1>Selector</h1>
                       <Cooridor  updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>  
-                      {/* <Button onClick={this.handlePageChangeFinal}>FINAL</Button> */}
+                      <Button onClick={this.handlePageChangeFinal}>FINAL</Button>
                     </>
+        
+        } else if (finalPage){
+            page = <>
+                    <h1>Final Page</h1>
+                    <SelectionTable currentUser={this.props.currentUser}/>
+                   </>
+
         } else {
             page = <div className='main'>
                     <h1>Selector</h1>
