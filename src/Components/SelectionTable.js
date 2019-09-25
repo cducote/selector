@@ -8,14 +8,13 @@ import { Table, Image, Form, } from 'react-bootstrap'
           e.preventDefault();
           changeQty(index, value);
           setValue("");
-        };
+        };              
       
         return (
-
                     <tr>
                         <td><Image alt='light' src={light.image} height="50"/></td>
                         <td>{light.partnumber}</td>
-                        <td>
+                        <td className='shortForm'>
                             <Form onSubmit={handleSubmit} light={light}>
                                 <Form.Control 
                                     size='sm'

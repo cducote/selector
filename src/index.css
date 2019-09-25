@@ -1,3 +1,7 @@
+.imageMapper {
+  
+}
+
 .navbar {
   background: #333c45;
 }
@@ -49,10 +53,14 @@ div.version {
   justify-content: center
 }
 
+.shortForm {
+  width: 100px;
+}
+
 .unitContainer {
   position: relative;
   display: inline-block;
-  margin-top: 2%;
+  margin-top: 5%;
 }
 
 .unitContainerC {

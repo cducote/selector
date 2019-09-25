@@ -45,26 +45,29 @@ class UnitOverlay extends Component {
   determineModal() {
     let areaId = this.state.areaClicked.id;
     if (areaId === 1) {
-      this.handleShowModalBF();
-    } else if (areaId === 2) {
-      this.handleShowModalLF();
-    } else if (areaId === 3) {
-      this.handleShowModalBalcony();
-    } else if (areaId === 4) {
-      this.handleShowModalCloset();
-    } else if (areaId === 5) {
-      this.handleShowModalHall();
-    } else if (areaId === 6) {
       this.handleShowModalShower();
-    } else if (areaId === 7) {
-      this.handleShowModalKitchen();
-    } else if (areaId === 8) {
+    } else if (areaId === 2) {
       this.handleShowModalVanity();
+    } else if (areaId === 3) {
+      this.handleShowModalCloset();
+    } else if (areaId === 4) {
+      this.handleShowModalHall();
+    } else if (areaId === 5) {
+      this.handleShowModalBF();
+    } else if (areaId === 6) {
+      this.handleShowModalLaundry();
+    } else if (areaId === 7) {
+      this.handleShowModalBalcony();
+    } else if (areaId === 8) {
+      this.handleShowModalLF();
     } else if (areaId === 9) {
       this.handleShowModalBP();
     } else if (areaId === 10) {
       this.handleShowModalEntry();
+    } else if (areaId === 11) {
+      this.handleShowModalKitchen();
     }
+
   }
 
   areaCheck = async area => {
@@ -86,7 +89,8 @@ class UnitOverlay extends Component {
       showModalVanity: false,
       showModalEntry: false,
       showModalKitchen: false,
-      showModalBP: false
+      showModalBP: false,
+      showModalLaundry: false
     });
     this.props.updateCartCount()
     this.props.updateCartCountNav()
@@ -94,6 +98,8 @@ class UnitOverlay extends Component {
     this.setState({ areaClicked: null })
   };
   placeSpan(light) {
+    console.log(light)
+    console.log(this.state.areaClicked)
     let imgSrc = light.image
     let spanCoords = this.state.areaClicked.scaledCoords
     this.setState({ selectedLight: light })
@@ -160,14 +166,17 @@ class UnitOverlay extends Component {
   handleShowModalBP = async () => {
     this.setState({ showModalBP: true });
   };
+  handleCloseModalLaundry = async () => {
+    this.setState({ showModalLaundry: false });
+  };
+  handleShowModalLaundry = async () => {
+    this.setState({ showModalLaundry: true });
+  };
 
   render() {
     let cardStyles = {
       textAlign: 'center'
     }
-    let styles = {
-      padding: '10em'
-  }
 
     const selectedProduct = this.state.products.map((e, i) =>(
         <img key={i} 
@@ -246,12 +255,13 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-
-   
-    let small = 375;
-    let medium = 750;
+    
+    
+    let small = 360;
+    let medium = 725;
     let large = 1024
     let responsive = 400
+    let rotateStyle = {}
     let width = window.innerWidth
     if (width >= 900) {
       responsive = large
@@ -259,9 +269,11 @@ class UnitOverlay extends Component {
       responsive = medium
     } else {
       responsive = small
+      // rotateStyle = { transform:  [{ rotate: '90deg'}]}
     }
     let responsiveUnitMapper = (
       <ImageMapper
+            style={rotateStyle}
             src={unit}
             width={responsive}
             imgWidth={1920}
@@ -274,15 +286,10 @@ class UnitOverlay extends Component {
     return (
       <>
        
-        <Container 
-        className="unitContainer"
-        >
-        
+        <Container className="unitContainer">
             <div>
-            
               {responsiveUnitMapper}
               {selectedProduct}
-             
             </div>
         </Container>
         
@@ -439,6 +446,18 @@ class UnitOverlay extends Component {
           <Modal.Body><Row>{pendantCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalBP}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        {/* Laundry Modal */}
+        <Modal show={this.state.showModalLaundry} onHide={this.handleCloseModalLaundry}>
+          <Modal.Header closeButton>
+            <Modal.Title>Laundry</Modal.Title>
+          </Modal.Header>
+          <Modal.Body><Row>{entryCard}</Row></Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleCloseModalLaundry}>
               Close
             </Button>
           </Modal.Footer>
