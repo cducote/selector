@@ -1,43 +1,65 @@
-import React, { Component } from 'react';
-import { Table } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Table, Image, Form, } from 'react-bootstrap'
 
-class SelectionTable extends Component {
-    render() {
+    function Light({ index, light, changeQty }) {
+        const [value, setValue] = useState("");
+      
+        const handleSubmit = e => {
+          e.preventDefault();
+          changeQty(index, value);
+          setValue("");
+        };
+      
         return (
-            <div>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                      
+
+                    <tr>
+                        <td><Image alt='light' src={light.image} height="50"/></td>
+                        <td>{light.partnumber}</td>
+                        <td>
+                            <Form onSubmit={handleSubmit} light={light}>
+                                <Form.Control 
+                                    size='sm'
+                                    md="2"
+                                    type='text'
+                                    name='count'
+                                    placeholder='enter qty'
+                                    value={value}
+                                    onChange={e => setValue(e.target.value)}
+                                />
+                            </Form>
+                        </td>
+                        <td>{light.qty}</td>
+                    </tr>
+        );
+      }
+
+      function SelectionTable({ cart }) {
+        console.log(cart);
+        const [finalCart, setCart] = useState(cart);
+        const changeQty = (index, qty) => {
+          const newCart = [...cart];
+          newCart[index].qty = qty;
+          setCart(newCart);
+        };
+
+        return (
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Light Pic</th>
                         <th>Part Number</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        </tr>
+                        <th colSpan="2">Qty</th>
+                        
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                       
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                      
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                     
-                        <td>Larry the Bird</td>
-                        <td>Berb</td>
-                        <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </div>
-        );
-    }
-}
+              {finalCart.map((light, index) => ( 
+                 <Light key={index} index={index} light={light} changeQty={changeQty} />
+               ))}
+               </tbody>
+            </Table>
+          );
+        }
+
 
 export default SelectionTable;

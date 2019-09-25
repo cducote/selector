@@ -27,9 +27,7 @@ div#lightName {
 
 div.main {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  text-align: center;
 }
 
 @media only screen and (min-width: 375px) {
@@ -54,15 +52,13 @@ div.version {
 .unitContainer {
   position: relative;
   display: inline-block;
-  justify-content: center;
-  align-self: center;
+  margin-top: 2%;
 }
 
 .unitContainerC {
   position: relative;
   display: inline-block;
-  /* justify-content: center; */
-  align-self: center;
+  margin-top: 5%;
 }
 
 h1 {

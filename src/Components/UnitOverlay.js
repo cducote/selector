@@ -10,10 +10,8 @@ import fans from '../API/sampleFans'
 import vanity from '../API/sampleVanity'
 import outdoorLights from '../API/sampleBalcony'
 // import axios from 'axios'
-// import NothingHere from './NothingHere'
 
 let MAP = ImageMap;
-// let KEY = NothingHere
 
 class UnitOverlay extends Component {
   state = {
@@ -92,23 +90,15 @@ class UnitOverlay extends Component {
     });
     this.props.updateCartCount()
     this.props.updateCartCountNav()
-    // console.log(light.partnumber + " added to cart");
     this.placeSpan(light, areaClicked)
-    await this.setState({ areaClicked: null })
+    this.setState({ areaClicked: null })
   };
-  placeSpan(light, areaClicked) {
-    console.log(light.image)
-    console.log(areaClicked)
+  placeSpan(light) {
     let imgSrc = light.image
     let spanCoords = this.state.areaClicked.scaledCoords
     this.setState({ selectedLight: light })
     this.setState({ products: [...this.state.products, {imgSrc, spanCoords} ]  })
   }
-
-  placeSelectedLight = light => {
-    console.log(light.name)
-  }
-  
 
   handleCloseModalBF = async () => {
     this.setState({ showModalBF: false });
@@ -175,6 +165,9 @@ class UnitOverlay extends Component {
     let cardStyles = {
       textAlign: 'center'
     }
+    let styles = {
+      padding: '10em'
+  }
 
     const selectedProduct = this.state.products.map((e, i) =>(
         <img key={i} 
@@ -183,7 +176,7 @@ class UnitOverlay extends Component {
           style={{
             position: "absolute",
             zIndex: 2,
-            left: `${e.spanCoords[0] + 25}px`,
+            left: `${e.spanCoords[0] + 30}px`,
             top: `${e.spanCoords[1] + 10}px`,
             width: 100,
             height: 100,
@@ -253,6 +246,7 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
+
    
     let small = 375;
     let medium = 750;
