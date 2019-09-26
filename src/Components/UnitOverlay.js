@@ -259,7 +259,7 @@ class UnitOverlay extends Component {
     
     let small = 360;
     let medium = 725;
-    let large = 1024
+    let large = 1140
     let responsive = 400
     let rotateStyle = {}
     let width = window.innerWidth
@@ -287,10 +287,10 @@ class UnitOverlay extends Component {
       <>
        
         <Container className="unitContainer">
-            <div>
+            
               {responsiveUnitMapper}
               {selectedProduct}
-            </div>
+            
         </Container>
         
         {/* Bed Fan */}

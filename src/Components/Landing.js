@@ -4,16 +4,15 @@ import Cooridor from './Cooridor'
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import SelectionTable from './SelectionTable'
-// import CheckoutPage from './CheckoutPage';
-// import jsPDF from 'jspdf'
-// import html2canvas from 'html2canvas'
 
 const StyledButton = styled(Button)`
     &&&{
+        display: flex;
         margin-top: 20px;
-        position: fixed;
+        position: relative;
         bottom: 0;
-        align-self: center;  
+        align-self: center;
+        margin: auto;
        }
 `
 
@@ -54,16 +53,9 @@ class Landing extends Component {
         this.setState({ cartCount: this.props.currentUser.cart.length })
     }
 
-    // printDocument = () => {
-    //     const input = document.getElementById('print');
-    //     html2canvas(input)
-    //       .then((canvas) => {
-    //         const imgData = canvas.toDataURL('image/png');
-    //         const pdf = new jsPDF();
-    //         pdf.addImage(imgData, 'JPEG', -22, 0, 250, 300);
-    //         pdf.save("download.pdf");
-    //       })
-    //   }
+    printDocument = () => {
+        window.print()
+      }
 
     removeTheDupe = () => {
         const currentUser = this.props.currentUser
@@ -81,23 +73,25 @@ class Landing extends Component {
         const finalPage = this.state.finalPageShow
         let page;
         if (corridorSelection) {
+            // 2
             page =  <div className='main'> 
-                   
                       <Cooridor  updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>  
-                      <Button onClick={this.handlePageChangeFinal}>FINAL</Button>
+                      <StyledButton variant='info' onClick={this.handlePageChangeFinal}>Finished</StyledButton>
                     </div>
         
-        } else if (finalPage){
+        } else if (finalPage){ 
+            // 3
             page = <>
-                   
                     <SelectionTable cart={this.props.currentUser.cart}/>
+                    <Button variant='info' onClick={this.printDocument}>PRINT</Button>
                    </>
 
         } else {
+            // 1
             page = <div className='main'>
                     
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>
-                        <StyledButton variant='info' onClick={this.handlePageChange}> Cooridor Selection </StyledButton>
+                        <StyledButton variant='info' onClick={this.handlePageChange}> Corridor Selection </StyledButton>
 
                    </div>
         }
