@@ -27,6 +27,7 @@ class UnitOverlay extends Component {
     showModalKitchen: false,
     showModalBP: false,
     products: [],
+    // productsAPI: [],
     selectedLight: null
   };
 
@@ -34,12 +35,11 @@ class UnitOverlay extends Component {
   //     this.getAllProducts()
   // }
   // getAllProducts = async ()=> {
-  //     const response = await axios.get("../allProducts.json")
-  //     this.setState({ products: response.data })
+  //     const API_KEY = process.env.REACT_APP_API_KEY
+  //     const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
+  //     this.setState({ productsAPI: response.data })
   //     console.log(response.data)
-  // }
-  // getAllProducts = async ()=> {
-  //   this.setState({products: BULBS})
+
   // }
 
   determineModal() {
@@ -185,10 +185,10 @@ class UnitOverlay extends Component {
           style={{
             position: "absolute",
             zIndex: 2,
-            left: `${e.spanCoords[0] + 30}px`,
+            left: `${e.spanCoords[0] + 38}px`,
             top: `${e.spanCoords[1] + 10}px`,
-            width: 100,
-            height: 100,
+            // width: `15%`,
+            height: `15%`,
             pointerEvents: "none"
           }}
           />

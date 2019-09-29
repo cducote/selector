@@ -1,36 +1,53 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Landing from "./Components/Landing";
-// import Checkout from "./Components/Checkout";
 import NavComponent from './Components/NavComponent'
+import axios from 'axios'
+import _ from 'lodash'
 
 class App extends Component {
   state = {
     count: 0,
+    productsAPI: [],
+    Lamps: [],
+    FlushMounts: [],
+    SemiFlush: [],
+    Pendant: [],
+    MiniPendant: [],
+    Chandelier: [],
+    Vanity: [],
+    WallScone: [],
+    ExteriorWall: [],
+    ExteriorHaning: [],
+    Track: [],
+    Linear: [],
+    CeliingFan: [],
     currentUser: {
       name: "no user",
       cart: []
     },
-    
   };
 
-  updateUser = userInfo => {
-    this.setState({ currentUser:
-       {
-         name: userInfo,
-         cart: [
-          {
-            "partnumber": "10A19M60WCL",
-            "image": require("./Images/lights/10A19M60WCL.jpg"),
-            "retailPrice": "0.00",
-            "qty": "0"
-          }
-         ]
-    } 
-  }); 
-};
+  componentDidMount() {
+    this.getAllProducts()
+  }
+getAllProducts = async ()=> {
+    const API_KEY = process.env.REACT_APP_API_KEY
+    const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
+    this.setState({ productsAPI: response.data })
+    // console.log(response.data)
+    this.chunkArray()
+  }
+
+chunkArray() {
+  let allProducts = this.state.productsAPI
+  let newList = _.groupBy(allProducts, "partnumber")
+  console.log(newList)
+  }
+
+
   updateCartCountNav = async() => {
-    await this.setState({ count: this.state.currentUser.cart.length })
+    this.setState({ count: this.state.currentUser.cart.length })
   }
 
   render() {
