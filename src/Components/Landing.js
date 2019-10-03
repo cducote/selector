@@ -23,6 +23,9 @@ class Landing extends Component {
         finalPageShow: false,
         cartCount: this.props.currentUser.cart.length
     }
+    componentDidMount(){
+        console.log(this.props)
+    }
 
     handlePageChange = async () => {
         //handlePageChange now removes any dupes before page change
