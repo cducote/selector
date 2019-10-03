@@ -4,11 +4,14 @@ import Landing from "./Components/Landing";
 import NavComponent from './Components/NavComponent'
 import axios from 'axios'
 import _ from 'lodash'
+// let RESPONSE = response1
 
 class App extends Component {
   state = {
     count: 0,
-    productsAPI: [],
+    productsAPI: {
+      lights: []
+    },
     Lamps: [],
     FlushMounts: [],
     SemiFlush: [],
@@ -28,23 +31,27 @@ class App extends Component {
     },
   };
 
-  componentDidMount() {
-    this.getAllProducts()
-  }
+componentDidMount() {
+  this.getAllProducts()
+}
+
 getAllProducts = async ()=> {
     const API_KEY = process.env.REACT_APP_API_KEY
-    const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
-    this.setState({ productsAPI: response.data })
-    // console.log(response.data)
+    const response = await axios.get(`https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
+    let obj = response.data
+    this.setState({ 
+      productsAPI: {
+        lights: obj
+      }
+    })
     this.chunkArray()
   }
 
 chunkArray() {
-  let allProducts = this.state.productsAPI
-  let newList = _.groupBy(allProducts, "partnumber")
-  console.log(newList)
+  let allProducts = this.state.productsAPI.lights
+  console.log(allProducts)
+  // console.log (JSON.stringify(allProducts))
   }
-
 
   updateCartCountNav = async() => {
     this.setState({ count: this.state.currentUser.cart.length })

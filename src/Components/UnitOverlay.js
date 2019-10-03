@@ -9,7 +9,7 @@ import pendants from "../API/samplePendants"
 import fans from '../API/sampleFans'
 import vanity from '../API/sampleVanity'
 import outdoorLights from '../API/sampleBalcony'
-// import axios from 'axios'
+
 
 let MAP = ImageMap;
 

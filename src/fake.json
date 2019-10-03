@@ -1,0 +1,26 @@
+[
+    {
+    "partnumber": "12355",
+    "image": "/media/pic/111112W BN.jpg",
+    "retailPrice": "20.00",
+    "use": "living"
+    },
+    {
+    "partnumber": "125556665",
+    "image": "/media/pic/111112W WBZ.jpg",
+    "retailPrice": "20.00",
+    "use": "laundry, living"
+    },
+    {
+    "partnumber": "12355666666",
+    "image": "/media/pic/111122 BK.jpg",
+    "retailPrice": "0.00",
+    "use": "bedroom, closet, entry"
+    },
+    {
+    "partnumber": "1233333333",
+    "image": "/media/pic/111122 BN.jpg",
+    "retailPrice": "0.00",
+    "use": "bedroom, closet, entry, hall, laundry, living"
+    }
+]
