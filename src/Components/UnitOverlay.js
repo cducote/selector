@@ -39,7 +39,6 @@ class UnitOverlay extends Component {
     selectedLight: null
   };
  
-  
   getAllProducts = async ()=> { 
       const API_KEY = process.env.REACT_APP_API_KEY
       const response = await axios.get(`https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
@@ -56,35 +55,34 @@ class UnitOverlay extends Component {
     await this.getAllProducts()
   }
 
-    chunkArray() {
-      let allProducts = this.state.productsAPI.lights
-      let grouped = _.groupBy(allProducts, 'use')
-      let bar = grouped.bar
-      let vanity = grouped.vanity
-      let kitchen = grouped.stairs
-      let shower = grouped['bedroom, closet, entry, hall, laundry, living, sho']
-      let balcony = grouped.balcony.concat(grouped['balcony, corrdiorwall']).concat(grouped.balconyceiling)
-      let hallway = grouped['bedroom, closet, entry, hall, laundry, living, sho'].concat(grouped['bedroom, closet, entry, hall, laundry, living'])
-      let entry = grouped.entry.concat(grouped['bedroom, closet, entry, hall, laundry, living']).concat(grouped['bedroom, closet, entry, hall, laundry, living, sho'])
-      let living = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
-      let bedroom = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
-      let closet = grouped['closet, laundry'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
-      this.setState({ Balcony: balcony })
-      this.setState({ Living: living })
-      this.setState({ Bedroom: bedroom })
-      this.setState({ Bar: bar })
-      this.setState({ Closet: closet })
-      this.setState({ Hallway: hallway })
-      this.setState({ Shower: shower })
-      this.setState({ Kitchen: kitchen })
-      this.setState({ Entry: entry })
-      this.setState({ exHall: hallway })
-      this.setState({ Stairs: kitchen })
-      this.setState({ exWall: balcony })
-      this.setState({ Vanity: vanity })
-      }
+  chunkArray() {
+    let allProducts = this.state.productsAPI.lights
+    let grouped = _.groupBy(allProducts, 'use')
+    let bar = grouped.bar
+    let vanity = grouped.vanity
+    let kitchen = grouped.stairs
+    let shower = grouped['bedroom, closet, entry, hall, laundry, living, sho']
+    let balcony = grouped.balcony.concat(grouped['balcony, corrdiorwall']).concat(grouped.balconyceiling)
+    let hallway = grouped['bedroom, closet, entry, hall, laundry, living, sho'].concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    let entry = grouped.entry.concat(grouped['bedroom, closet, entry, hall, laundry, living']).concat(grouped['bedroom, closet, entry, hall, laundry, living, sho'])
+    let living = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    let bedroom = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    let closet = grouped['closet, laundry'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    this.setState({ Balcony: balcony })
+    this.setState({ Living: living })
+    this.setState({ Bedroom: bedroom })
+    this.setState({ Bar: bar })
+    this.setState({ Closet: closet })
+    this.setState({ Hallway: hallway })
+    this.setState({ Shower: shower })
+    this.setState({ Kitchen: kitchen })
+    this.setState({ Entry: entry })
+    this.setState({ exHall: hallway })
+    this.setState({ Stairs: kitchen })
+    this.setState({ exWall: balcony })
+    this.setState({ Vanity: vanity })
+  }
  
-
   determineModal() {
     let areaId = this.state.areaClicked.id;
     if (areaId === 1) {
@@ -219,7 +217,8 @@ class UnitOverlay extends Component {
 
   render() {
     let cardStyles = {
-      textAlign: 'center'
+      textAlign: 'center',
+      fontSize: '.8em'
     }
 
     const selectedProduct = this.state.products.map((e, i) =>(
