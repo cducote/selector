@@ -9,6 +9,8 @@ import pendants from "../API/samplePendants"
 import fans from '../API/sampleFans'
 import vanity from '../API/sampleVanity'
 import outdoorLights from '../API/sampleBalcony'
+import _ from 'lodash'
+import axios from 'axios'
 
 
 let MAP = ImageMap;
@@ -30,17 +32,50 @@ class UnitOverlay extends Component {
     // productsAPI: [],
     selectedLight: null
   };
+  componentDidMount() {
+    this.getAllProducts()
+  }
+  
+  getAllProducts = async ()=> { 
+      const API_KEY = process.env.REACT_APP_API_KEY
+      const response = await axios.get(`https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
+      let obj = response.data
+      this.setState({ 
+        productsAPI: {
+          lights: obj
+        }
+      })
+      this.chunkArray()
+    }
 
-  // componentDidMount() {
-  //     this.getAllProducts()
-  // }
-  // getAllProducts = async ()=> {
-  //     const API_KEY = process.env.REACT_APP_API_KEY
-  //     const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
-  //     this.setState({ productsAPI: response.data })
-  //     console.log(response.data)
-
-  // }
+    chunkArray() {
+      let allProducts = this.state.productsAPI.lights
+      let grouped = _.groupBy(allProducts, 'use')
+      let bar = grouped.bar
+      let vanity = grouped.vanity
+      let kitchen = grouped.stairs
+      let shower = grouped['bedroom, closet, entry, hall, laundry, living, sho']
+      let balcony = grouped.balcony.concat(grouped['balcony, corrdiorwall']).concat(grouped.balconyceiling)
+      let hallway = grouped['bedroom, closet, entry, hall, laundry, living, sho'].concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+      let entry = grouped.entry.concat(grouped['bedroom, closet, entry, hall, laundry, living']).concat(grouped['bedroom, closet, entry, hall, laundry, living, sho'])
+      let living = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+      let bedroom = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+      let closet = grouped['closet, laundry'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+      this.setState({ Balcony: balcony })
+      this.setState({ Living: living })
+      this.setState({ Bedroom: bedroom })
+      this.setState({ Bar: bar })
+      this.setState({ Closet: closet })
+      this.setState({ Hallway: hallway })
+      this.setState({ Shower: shower })
+      this.setState({ Kitchen: kitchen })
+      this.setState({ Entry: entry })
+      this.setState({ exHall: hallway })
+      this.setState({ Stairs: kitchen })
+      this.setState({ exWall: balcony })
+      this.setState({ Vanity: vanity })
+      }
+ 
 
   determineModal() {
     let areaId = this.state.areaClicked.id;
@@ -111,6 +146,7 @@ class UnitOverlay extends Component {
   };
   handleShowModalBF = async () => {
     this.setState({ showModalBF: true });
+    console.log(this.props.lights)
   };
   handleCloseModalLF = async () => {
     this.setState({ showModalLF: false });

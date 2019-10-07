@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import SelectionTable from './SelectionTable'
 
+
 const StyledButton = styled(Button)`
     &&&{
         display: flex;
@@ -23,9 +24,7 @@ class Landing extends Component {
         finalPageShow: false,
         cartCount: this.props.currentUser.cart.length
     }
-    componentDidMount(){
-        console.log(this.props)
-    }
+    
 
     handlePageChange = async () => {
         //handlePageChange now removes any dupes before page change
@@ -70,6 +69,8 @@ class Landing extends Component {
         currentUser.cart.length = 0
         currentUser.cart = cartArray
     }
+
+    
       
     render() {
         const corridorSelection = this.state.corridorSelection
