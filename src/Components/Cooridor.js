@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Container, Card, Image, Modal, Row, Button} from "react-bootstrap";
 import ImageMapper from "react-image-mapper";
-import entryLights from '../API/sampleEntry'
-import pendants from '../API/samplePendants'
 import CImageMap from './CImageMap'
 import CorridorNoEM from '../Images/corridor/CorridorNoEM.png'
 import _ from 'lodash'
