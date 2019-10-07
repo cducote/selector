@@ -3,15 +3,8 @@ import { Button, Modal, Container,Image, Card, Row } from "react-bootstrap";
 import unit from "../Images/units/unit.png";
 import ImageMapper from "react-image-mapper";
 import ImageMap from "./ImageMap";
-import entryLights from '../API/sampleEntry'
-import kitchen from '../API/sampleKitchen'
-import pendants from "../API/samplePendants"
-import fans from '../API/sampleFans'
-import vanity from '../API/sampleVanity'
-import outdoorLights from '../API/sampleBalcony'
 import _ from 'lodash'
 import axios from 'axios'
-
 
 let MAP = ImageMap;
 
@@ -28,13 +21,24 @@ class UnitOverlay extends Component {
     showModalEntry: false,
     showModalKitchen: false,
     showModalBP: false,
+    Balcony: [],
+    Bar: [],
+    Bedroom: [],
+    Closet: [],
+    Entry: [],
+    Hallway: [],
+    Kitchen: [],
+    Living: [],
+    Shower: [],
+    Stairs: [],
+    Vanity: [],
     products: [],
-    // productsAPI: [],
+    productsAPI: {
+      light: []
+    },
     selectedLight: null
   };
-  componentDidMount() {
-    this.getAllProducts()
-  }
+ 
   
   getAllProducts = async ()=> { 
       const API_KEY = process.env.REACT_APP_API_KEY
@@ -47,6 +51,10 @@ class UnitOverlay extends Component {
       })
       this.chunkArray()
     }
+
+  componentDidMount = async () => {
+    await this.getAllProducts()
+  }
 
     chunkArray() {
       let allProducts = this.state.productsAPI.lights
@@ -231,7 +239,7 @@ class UnitOverlay extends Component {
       
     ))
 
-    const pendantCard = pendants.map((light, i) => {
+    const barCard = this.state.Bar.map((light, i) => {
       return (
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
@@ -241,7 +249,37 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    const entryCard = entryLights.map((light, i) => {
+    const hallwayCard = this.state.Hallway.map((light, i) => {
+      return (
+        <Card key={i}>
+          <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
+                <Image alt="test" src={light.image} height="133"/>
+                <div className='partNumber'>{light.partnumber}</div>
+          </Container>
+        </Card>
+      );
+    });
+    const closetCard = this.state.Closet.map((light, i) => {
+      return (
+        <Card key={i}>
+          <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
+                <Image alt="test" src={light.image} height="133"/>
+                <div className='partNumber'>{light.partnumber}</div>
+          </Container>
+        </Card>
+      );
+    });
+    const showerCard = this.state.Shower.map((light, i) => {
+      return (
+        <Card key={i}>
+          <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
+                <Image alt="test" src={light.image} height="133"/>
+                <div className='partNumber'>{light.partnumber}</div>
+          </Container>
+        </Card>
+      );
+    });
+    const entryCard = this.state.Entry.map((light, i) => {
       return (
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
@@ -251,7 +289,7 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    const kitchenCard = kitchen.map((light, i) => {
+    const kitchenCard = this.state.Kitchen.map((light, i) => {
       return (
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
@@ -261,7 +299,7 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    const fanCard = fans.map((light, i) => {
+    const bedroomCard = this.state.Bedroom.map((light, i) => {
       return (
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)} style={cardStyles}>
@@ -271,7 +309,17 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    const balconyCard = outdoorLights.map((light, i) => {
+    const livingroomCard = this.state.Living.map((light, i) => {
+      return (
+        <Card key={i}>
+          <Container onClick={() => this.pushToCart(light)} style={cardStyles}>
+                <Image alt="test" src={light.image} height="133"/>
+                <div>{light.partnumber}</div>
+          </Container>
+        </Card>
+      );
+    });
+    const balconyCard = this.state.Balcony.map((light, i) => {
       return (
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
@@ -281,7 +329,7 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    const vanityCard = vanity.map((light, i) => {
+    const vanityCard = this.state.Vanity.map((light, i) => {
       return (
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>          
@@ -291,7 +339,6 @@ class UnitOverlay extends Component {
         </Card>
       );
     });
-    
     
     let small = 360;
     let medium = 725;
@@ -323,10 +370,8 @@ class UnitOverlay extends Component {
       <>
        
         <Container className="unitContainer">
-            
-              {responsiveUnitMapper}
-              {selectedProduct}
-            
+          {responsiveUnitMapper}
+          {selectedProduct}
         </Container>
         
         {/* Bed Fan */}
@@ -340,7 +385,7 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body>
             <Row>
-              {fanCard}
+              {bedroomCard}
             </Row>
          
           
@@ -358,7 +403,7 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body>
             <Row>
-              {fanCard} 
+              {livingroomCard} 
             </Row>
           </Modal.Body>
           <Modal.Footer>
@@ -392,7 +437,7 @@ class UnitOverlay extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Closet</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{entryCard}</Row></Modal.Body>
+          <Modal.Body><Row>{closetCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalCloset}>
               Close
@@ -407,7 +452,7 @@ class UnitOverlay extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Hallway</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{entryCard}</Row></Modal.Body>
+          <Modal.Body><Row>{hallwayCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalHall}>
               Close
@@ -422,7 +467,7 @@ class UnitOverlay extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Shower</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{entryCard}</Row></Modal.Body>
+          <Modal.Body><Row>{showerCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalShower}>
               Close
@@ -474,12 +519,12 @@ class UnitOverlay extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        {/* Bar Pendant Modal */}
+        {/* Bar Modal */}
         <Modal show={this.state.showModalBP} onHide={this.handleCloseModalBP}>
           <Modal.Header closeButton>
             <Modal.Title>Bar Pendant</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{pendantCard}</Row></Modal.Body>
+          <Modal.Body><Row>{barCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalBP}>
               Close
@@ -491,7 +536,7 @@ class UnitOverlay extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Laundry</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{entryCard}</Row></Modal.Body>
+          <Modal.Body><Row>{hallwayCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalLaundry}>
               Close
