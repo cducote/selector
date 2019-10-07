@@ -5,6 +5,8 @@ import entryLights from '../API/sampleEntry'
 import pendants from '../API/samplePendants'
 import CImageMap from './CImageMap'
 import CorridorNoEM from '../Images/corridor/CorridorNoEM.png'
+import _ from 'lodash'
+import axios from 'axios'
 
 let CORMAP = CImageMap
 
@@ -15,8 +17,55 @@ class Cooridor extends Component {
     showModalHL: false,
     showModdalSP: false,
     products: [],
-    selectedProduct: null
+    selectedProduct: null,
+    exHall: [],
+    exWall: [],
+    Stairs: []
   }
+
+  getAllProducts = async ()=> { 
+    const API_KEY = process.env.REACT_APP_API_KEY
+    const response = await axios.get(`https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
+    let obj = response.data
+    this.setState({ 
+      productsAPI: {
+        lights: obj
+      }
+    })
+    this.chunkArray()
+  }
+
+  componentDidMount = async () => {
+    await this.getAllProducts()
+  }
+
+  chunkArray() {
+    let allProducts = this.state.productsAPI.lights
+    let grouped = _.groupBy(allProducts, 'use')
+    let bar = grouped.bar
+    let vanity = grouped.vanity
+    let kitchen = grouped.stairs
+    let shower = grouped['bedroom, closet, entry, hall, laundry, living, sho']
+    let balcony = grouped.balcony.concat(grouped['balcony, corrdiorwall']).concat(grouped.balconyceiling)
+    let hallway = grouped['bedroom, closet, entry, hall, laundry, living, sho'].concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    let entry = grouped.entry.concat(grouped['bedroom, closet, entry, hall, laundry, living']).concat(grouped['bedroom, closet, entry, hall, laundry, living, sho'])
+    let living = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    let bedroom = grouped['bedroom, living'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    let closet = grouped['closet, laundry'].concat(grouped['bedroom, closet, entry, hall, laundry, living, sho']).concat(grouped['bedroom, closet, entry, hall, laundry, living'])
+    this.setState({ Balcony: balcony })
+    this.setState({ Living: living })
+    this.setState({ Bedroom: bedroom })
+    this.setState({ Bar: bar })
+    this.setState({ Closet: closet })
+    this.setState({ Hallway: hallway })
+    this.setState({ Shower: shower })
+    this.setState({ Kitchen: kitchen })
+    this.setState({ Entry: entry })
+    this.setState({ exHall: hallway })
+    this.setState({ Stairs: kitchen })
+    this.setState({ exWall: balcony })
+    this.setState({ Vanity: vanity })
+    }
 
   determineModal() {
     let areaId = this.state.areaClicked.id;
@@ -98,7 +147,7 @@ class Cooridor extends Component {
           />
       
     ))
-      const pendantCard = pendants.map((light, i) => {
+      const wallCard = this.state.exWall.map((light, i) => {
         return (
           <Card key={i}>
             <Container onClick={() => this.pushToCartC(light)}  style={cardStyles}>
@@ -108,7 +157,17 @@ class Cooridor extends Component {
           </Card>
         );
       });
-      const entryCard = entryLights.map((light, i) => {
+      const hallCard = this.state.exHall.map((light, i) => {
+        return (
+          <Card key={i}>
+            <Container onClick={() => this.pushToCartC(light)}  style={cardStyles}>
+                  <Image alt="test" src={light.image} height="133"/>
+                  <div>{light.partnumber}</div>
+            </Container>
+          </Card>
+        );
+      });
+      const stairsCard = this.state.Stairs.map((light, i) => {
         return (
           <Card key={i}>
             <Container onClick={() => this.pushToCartC(light)}  style={cardStyles}>
@@ -152,7 +211,7 @@ class Cooridor extends Component {
                 </Container>
                
 
-                {/* Hallway Pendant */}
+                {/* Hallway Wall */}
         <Modal
           show={this.state.showModalHP}
           onHide={this.handleCloseModalHP}
@@ -160,7 +219,7 @@ class Cooridor extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Hallway Pendant</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{entryCard}</Row></Modal.Body>
+          <Modal.Body><Row>{wallCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalHP}>
               Close
@@ -175,7 +234,7 @@ class Cooridor extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Hallway Ceiling</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{entryCard}</Row></Modal.Body>
+          <Modal.Body><Row>{hallCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalHL}>
               Close
@@ -190,7 +249,7 @@ class Cooridor extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Stairwell</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Row>{pendantCard}</Row></Modal.Body>
+          <Modal.Body><Row>{stairsCard}</Row></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModalSP}>
               Close

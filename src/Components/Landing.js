@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import SelectionTable from './SelectionTable'
 
-
 const StyledButton = styled(Button)`
     &&&{
         display: flex;
