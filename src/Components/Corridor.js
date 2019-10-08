@@ -126,7 +126,7 @@ class Cooridor extends Component {
 
     render() {
       let cardStyles = {
-        textAlign: 'center'
+        textAlign: 'center',
       }
 
       const selectedProduct = this.state.products.map((e, i) =>(
@@ -160,7 +160,7 @@ class Cooridor extends Component {
           <Card key={i}>
             <Container onClick={() => this.pushToCartC(light)}  style={cardStyles}>
                   <Image alt="test" src={light.image} height="133"/>
-                  <div>{light.partnumber}</div>
+                  <div className='partNumber'>{light.partnumber}</div>
             </Container>
           </Card>
         );
@@ -170,7 +170,7 @@ class Cooridor extends Component {
           <Card key={i}>
             <Container onClick={() => this.pushToCartC(light)}  style={cardStyles}>
                   <Image alt="test" src={light.image} height="133"/>
-                  <div>{light.partnumber}</div>
+                  <div className='partNumber'>{light.partnumber}</div>
             </Container>
           </Card>
         );

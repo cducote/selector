@@ -15,19 +15,18 @@ import { Table, Image, Form, } from 'react-bootstrap'
                         <td><Image alt='light' src={light.image} height="50"/></td>
                         <td><a href={`/productspages/product_page.php?id=${light.partnumber}`} rel='noopener noreferrer' target='_blank' >{light.partnumber}</a></td>
                         <td className='shortForm'>
-                            <Form onSubmit={handleSubmit} light={light}>
+                            <Form onSubmit={handleSubmit} light={light}>Enter qty
                                 <Form.Control 
-                                    size='sm'
-                                    md="2"
+                                
+                                    // md="2"
                                     type='text'
                                     name='count'
-                                    placeholder='enter qty'
+                                    placeholder='0'
                                     value={value}
                                     onChange={e => setValue(e.target.value)}
                                 />
                             </Form>
                         </td>
-                        <td>{light.qty}</td>
                     </tr>
         );
       }

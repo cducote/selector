@@ -9,6 +9,7 @@ import axios from 'axios'
 let MAP = ImageMap;
 
 class UnitOverlay extends Component {
+
   state = {
     areaClicked: 0,
     showModalBF: false,
@@ -58,9 +59,10 @@ class UnitOverlay extends Component {
   chunkArray() {
     let allProducts = this.state.productsAPI.lights
     let grouped = _.groupBy(allProducts, 'use')
+    console.log(grouped)
     let bar = grouped.bar
     let vanity = grouped.vanity
-    let kitchen = grouped.stairs
+    let kitchen = grouped.stairs.concat(grouped.kitchen)
     let shower = grouped['bedroom, closet, entry, hall, laundry, living, sho']
     let balcony = grouped.balcony.concat(grouped['balcony, corrdiorwall']).concat(grouped.balconyceiling)
     let hallway = grouped['bedroom, closet, entry, hall, laundry, living, sho'].concat(grouped['bedroom, closet, entry, hall, laundry, living'])
@@ -218,7 +220,7 @@ class UnitOverlay extends Component {
   render() {
     let cardStyles = {
       textAlign: 'center',
-      fontSize: '.8em'
+      fontSize: '1em'
     }
 
     const selectedProduct = this.state.products.map((e, i) =>(
@@ -283,7 +285,7 @@ class UnitOverlay extends Component {
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
                 <Image alt="test" src={light.image} height="133"/>
-                <div>{light.partnumber}</div>
+                <div className='partNumber'>{light.partnumber}</div>
           </Container>
         </Card>
       );
@@ -293,7 +295,7 @@ class UnitOverlay extends Component {
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
                 <Image alt="test" src={light.image} height="133"/>
-                <div>{light.partnumber}</div>
+                <div className='partNumber'>{light.partnumber}</div>
           </Container>
         </Card>
       );
@@ -303,7 +305,7 @@ class UnitOverlay extends Component {
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)} style={cardStyles}>
                 <Image alt="test" src={light.image} height="133"/>
-                <div>{light.partnumber}</div>
+                <div className='partNumber'>{light.partnumber}</div>
           </Container>
         </Card>
       );
@@ -313,7 +315,7 @@ class UnitOverlay extends Component {
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)} style={cardStyles}>
                 <Image alt="test" src={light.image} height="133"/>
-                <div>{light.partnumber}</div>
+                <div className='partNumber'>{light.partnumber}</div>
           </Container>
         </Card>
       );
@@ -323,7 +325,7 @@ class UnitOverlay extends Component {
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>
                 <Image alt="test" src={light.image} height="133"/>
-                <div>{light.partnumber}</div>
+                <div className='partNumber'>{light.partnumber}</div>
           </Container>
         </Card>
       );
@@ -333,7 +335,7 @@ class UnitOverlay extends Component {
         <Card key={i}>
           <Container onClick={() => this.pushToCart(light)}  style={cardStyles}>          
                 <Image alt="test" src={light.image} height="133"/>
-                <div>{light.partnumber}</div>
+                <div className='partNumber'>{light.partnumber}</div>
           </Container>
         </Card>
       );

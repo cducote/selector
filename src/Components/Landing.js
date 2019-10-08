@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import UnitOverlay from './UnitOverlay'
-import Cooridor from './Cooridor'
+import Corridor from './Corridor'
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import SelectionTable from './SelectionTable'
+import { FaChevronRight, FaChevronLeft, FaPrint } from 'react-icons/fa'
 
 const StyledButton = styled(Button)`
     &&&{
@@ -12,7 +13,8 @@ const StyledButton = styled(Button)`
         position: relative;
         bottom: 0;
         align-self: center;
-        margin: auto;
+        justify-content: center;
+        align-items: center;
        }
 `
 
@@ -21,10 +23,11 @@ class Landing extends Component {
     state = {
         corridorSelection: false,
         finalPageShow: false,
+        hideButtons: false,
+        nullBox: null,
         cartCount: this.props.currentUser.cart.length
     }
     
-
     handlePageChange = async () => {
         //handlePageChange now removes any dupes before page change
         const currentUser = this.props.currentUser
@@ -37,6 +40,15 @@ class Landing extends Component {
         currentUser.cart = cartArray
         this.setState({ corridorSelection: true })
     }
+
+    handleGoBack = async () => {
+       this.setState({ corridorSelection: false }) 
+    }
+
+    handleGoBack2 = async () => {
+        this.setState({ corridorSelection: true })
+        this.setState({ finalPageShow: false }) 
+     }
     
     handlePageChangeFinal = async ()=> {
         const currentUser = this.props.currentUser
@@ -55,7 +67,8 @@ class Landing extends Component {
     }
 
     printDocument = () => {
-        window.print()
+        this.setState({ hideButtons: true })
+        setTimeout(() => { window.print() }, 1000);
       }
 
     removeTheDupe = () => {
@@ -69,33 +82,46 @@ class Landing extends Component {
         currentUser.cart = cartArray
     }
 
-    
-      
     render() {
         const corridorSelection = this.state.corridorSelection
         const finalPage = this.state.finalPageShow
+        const hideButtons = this.state.hideButtons
         let page;
+        let buttonBox = <div className='buttonBox'>
+        <StyledButton variant='secondary' onClick={this.handleGoBack2}> <FaChevronLeft/>&nbsp;Back</StyledButton>&emsp;
+        <StyledButton variant='secondary' onClick={this.printDocument}>Print&nbsp;<FaPrint/></StyledButton>
+        </div>
+        if (hideButtons){
+            buttonBox = <div>Thank you!</div>
+        }
         if (corridorSelection) {
             // 2
             page =  <div className='main'> 
-                      <Cooridor  updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>  
-                      <StyledButton variant='info' onClick={this.handlePageChangeFinal}>Finished</StyledButton>
+                      <Corridor  updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>  
+                      <div className='buttonBox'>
+                        <StyledButton variant='secondary' onClick={this.handleGoBack}><FaChevronLeft/>&nbsp;Back</StyledButton>&emsp;
+                        <StyledButton variant='secondary' onClick={this.handlePageChangeFinal}>Summary&nbsp;<FaChevronRight/></StyledButton>
+                      </div>
                     </div>
-        
         } else if (finalPage){ 
             // 3
             page = <>
                     <SelectionTable cart={this.props.currentUser.cart}/>
-                    <Button variant='info' onClick={this.printDocument}>PRINT</Button>
+                    <div>
+                    {buttonBox}
+                    </div>
                    </>
-
         } else {
             // 1
             page = <div className='main'>
                     
                         <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>
-                        <StyledButton variant='info' onClick={this.handlePageChange}> Corridor Selection </StyledButton>
-
+                        <div className='buttonBox'>
+                            <StyledButton variant='secondary' onClick={this.handlePageChange}>
+                               To Corridor Selection&nbsp;
+                                <FaChevronRight/> 
+                            </StyledButton>
+                        </div>
                    </div>
         }
         return (
