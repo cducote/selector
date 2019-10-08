@@ -21,7 +21,7 @@ class NavComponent extends Component {
             <>
             <Navbar expand='lg' sticky="top">
                 <Navbar.Brand id='main'>
-                    Vineyard Lighting 
+                    <a href='/'>Vineyard Lighting </a>
                 </Navbar.Brand> 
                 <Navbar.Toggle/>
                 <Navbar.Collapse>

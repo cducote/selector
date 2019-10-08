@@ -71,4 +71,11 @@ div.version {
   margin-top: 5%;
 }
 
+a {
+  color: white;
+}
 
+a:hover {
+  color: rgba(102, 102, 102, 0.5);
+  text-decoration: none;
+}
