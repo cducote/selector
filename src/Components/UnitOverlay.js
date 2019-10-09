@@ -59,7 +59,6 @@ class UnitOverlay extends Component {
   chunkArray() {
     let allProducts = this.state.productsAPI.lights
     let grouped = _.groupBy(allProducts, 'use')
-    console.log(grouped)
     let bar = grouped.bar
     let vanity = grouped.vanity
     let kitchen = grouped.stairs.concat(grouped.kitchen)
@@ -110,7 +109,6 @@ class UnitOverlay extends Component {
     } else if (areaId === 11) {
       this.handleShowModalKitchen();
     }
-
   }
 
   areaCheck = async area => {
@@ -141,12 +139,36 @@ class UnitOverlay extends Component {
     this.setState({ areaClicked: null })
   };
   placeSpan(light) {
-    console.log(light)
-    console.log(this.state.areaClicked)
     let imgSrc = light.image
     let spanCoords = this.state.areaClicked.scaledCoords
+    let area = this.state.areaClicked.id
+    let use = light.use
     this.setState({ selectedLight: light })
-    this.setState({ products: [...this.state.products, {imgSrc, spanCoords} ]  })
+    this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
+  }
+  clearSquare = async light => {
+    // let cart = this.props.currentUser.cart
+    let areaClicked = this.state.areaClicked.id
+    let selectedProducts = this.state.products
+    // Removes light from products array
+    _.remove(selectedProducts, (n) => {
+      console.log(n.area)
+      return n.area === areaClicked
+  })
+    this.setState({
+      showModalBF: false,
+      showModalLF: false,
+      showModalBalcony: false,
+      showModalCloset: false,
+      showModalHall: false,
+      showModalShower: false,
+      showModalVanity: false,
+      showModalEntry: false,
+      showModalKitchen: false,
+      showModalBP: false,
+      showModalLaundry: false
+    });
+    this.setState({ areaClicked: null })
   }
 
   handleCloseModalBF = async () => {
@@ -154,7 +176,6 @@ class UnitOverlay extends Component {
   };
   handleShowModalBF = async () => {
     this.setState({ showModalBF: true });
-    console.log(this.props.lights)
   };
   handleCloseModalLF = async () => {
     this.setState({ showModalLF: false });
@@ -237,7 +258,6 @@ class UnitOverlay extends Component {
             pointerEvents: "none"
           }}
           />
-      
     ))
 
     const barCard = this.state.Bar.map((light, i) => {
@@ -392,6 +412,9 @@ class UnitOverlay extends Component {
           
           </Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalBF}>
               Close
             </Button>
@@ -408,6 +431,9 @@ class UnitOverlay extends Component {
             </Row>
           </Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalLF}>
               Close
             </Button>
@@ -425,6 +451,9 @@ class UnitOverlay extends Component {
             <Row>{balconyCard}</Row>
           </Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalBalcony}>
               Close
             </Button>
@@ -440,6 +469,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{closetCard}</Row></Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalCloset}>
               Close
             </Button>
@@ -455,6 +487,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{hallwayCard}</Row></Modal.Body>
           <Modal.Footer>
+            <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalHall}>
               Close
             </Button>
@@ -470,6 +505,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{showerCard}</Row></Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalShower}>
               Close
             </Button>
@@ -485,6 +523,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{vanityCard}</Row></Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalVanity}>
               Close
             </Button>
@@ -500,6 +541,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{entryCard}</Row></Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalEntry}>
               Close
             </Button>
@@ -515,6 +559,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{kitchenCard}</Row></Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalKitchen}>
               Close
             </Button>
@@ -527,6 +574,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{barCard}</Row></Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalBP}>
               Close
             </Button>
@@ -539,6 +589,9 @@ class UnitOverlay extends Component {
           </Modal.Header>
           <Modal.Body><Row>{hallwayCard}</Row></Modal.Body>
           <Modal.Footer>
+          <Button variant="primary" onClick={this.clearSquare}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalLaundry}>
               Close
             </Button>

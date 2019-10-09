@@ -71,17 +71,6 @@ class Landing extends Component {
         setTimeout(() => { window.print() }, 1000);
       }
 
-    removeTheDupe = () => {
-        const currentUser = this.props.currentUser
-        const cartArray = currentUser.cart.filter((light,index) => {
-            return index === currentUser.cart.findIndex(obj => {
-            return JSON.stringify(obj) === JSON.stringify(light);
-        });
-    });
-        currentUser.cart.length = 0
-        currentUser.cart = cartArray
-    }
-
     render() {
         const corridorSelection = this.state.corridorSelection
         const finalPage = this.state.finalPageShow
