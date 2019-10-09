@@ -79,3 +79,8 @@ a:hover {
   color: rgba(102, 102, 102, 0.5);
   text-decoration: none;
 }
+
+a.form {
+  color: rgb(11, 81, 179);
+  text-decoration: none;
+}

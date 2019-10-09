@@ -13,7 +13,7 @@ import { Table, Image, Form, } from 'react-bootstrap'
         return (
                     <tr>
                         <td><Image alt='light' src={light.image} height="50"/></td>
-                        <td><a href={`/productspages/product_page.php?id=${light.partnumber}`} rel='noopener noreferrer' target='_blank' >{light.partnumber}</a></td>
+                        <td><a className='form' href={`/productspages/product_page.php?id=${light.partnumber}`} rel='noopener noreferrer' target='_blank' >{light.partnumber}</a></td>
                         <td className='shortForm'>
                             <Form onSubmit={handleSubmit} light={light}>Enter qty
                                 <Form.Control 
