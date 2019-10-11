@@ -32,7 +32,7 @@ import { Table, Image, Form, } from 'react-bootstrap'
       }
 
       function SelectionTable({ cart }) {
-        console.log(cart);
+        // console.log(cart);
         const [finalCart, setCart] = useState(cart);
         const changeQty = (index, qty) => {
           const newCart = [...cart];

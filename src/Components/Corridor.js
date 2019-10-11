@@ -82,9 +82,11 @@ class Cooridor extends Component {
   };
 
   pushToCartC = async light => {
+    let areaId = this.state.areaClicked.id
     let areaClicked = this.state.areaClicked
     const cart2 = this.props.currentUser.cart
-    await cart2.push(light);
+    let updatedLight = {...light, areaId}
+    await cart2.push(updatedLight);
     this.setState({
       showModalHP: false,
       showModalHL: false,

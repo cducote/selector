@@ -16,6 +16,18 @@ class App extends Component {
     this.setState({ count: this.state.currentUser.cart.length })
   }
 
+  componentDidUpdate() {
+    let cart = this.state.currentUser.cart
+    // let result = Array.from(cart.reduce((m, o) => m.set(o.use, o), new Map).values());
+    // console.log(result);
+    // const newCartArray = cart.filter((light, i, array) => {
+    //   return !array.slice(i + 1).some(obj => obj.use.slice(0, 10) === light.use.slice(0,10));
+    // })
+    // console.log(newCartArray)
+    
+  }
+  
+
   render() {
     const LandingComponent = (props) => <Landing { ...props } 
       updateUser={this.updateUser} 

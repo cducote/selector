@@ -117,9 +117,11 @@ class UnitOverlay extends Component {
   };
 
   pushToCart = async light => {
+    let areaId = this.state.areaClicked.id 
     let areaClicked = this.state.areaClicked
     const cart = this.props.currentUser.cart
-    await cart.push(light);
+    let updatedLight = {...light, areaId}
+    await cart.push(updatedLight)
     this.setState({
       showModalBF: false,
       showModalLF: false,
@@ -152,14 +154,9 @@ class UnitOverlay extends Component {
     let selectedProducts = this.state.products
     // Removes light from products array
     _.remove(selectedProducts, (n) => {
-      // console.log(n.area)
       return n.area === areaClicked
   })
-    // _.remove(cart, (e) => {
-    //   console.log(e.use)
-    //   // console.log(light.use)
-    //   return e.use === light.use
-    // })
+    
     this.setState({
       showModalBF: false,
       showModalLF: false,
