@@ -148,8 +148,7 @@ class UnitOverlay extends Component {
     this.setState({ selectedLight: light })
     this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
   }
-  clearSquare = async light => {
-    let cart = this.props.currentUser.cart
+  clearSquare() {
     let areaClicked = this.state.areaClicked.id
     let selectedProducts = this.state.products
     // Removes light from products array
