@@ -10,6 +10,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+
 .container#greyBack {
   background: grey;
   height: 100%;
@@ -41,14 +42,57 @@ div.buttonBox {
     padding-top: 30px;
     font-size: 1em;
   }
+  /* img {
+    width: 30%;
+  }
+  canvas {
+    width: 30%;
+  }
+  div[style~='position: relative'] {
+    width: 30%;
+  } */
 }
 
 @media only screen and (min-width: 600px) {
+  /* img {
+    width: 55%;
+  }
+  canvas {
+    width: 55%;
+  } */
+  
   div.partNumber {
     padding-top: 30px;
     font-size: .8em;
   }
 }
+
+/* @media only screen and (min-width: 900px) {
+  img {
+    width: 60%;
+  }
+  canvas {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  img:not(.mapped) {
+    width: 80%;
+  }
+  canvas {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  img:not(.mapped) {
+    width: 95%;
+  }
+  canvas {
+    width: 95%;
+  }
+} */
 
 div.version {
   display: flex;
@@ -63,6 +107,7 @@ div.version {
   position: relative;
   display: inline-block;
   margin-top: 5%;
+  /* width: 100%; */
 }
 
 .unitContainerC {
