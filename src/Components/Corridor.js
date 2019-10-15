@@ -67,11 +67,11 @@ class Cooridor extends Component {
 
   determineModal() {
     let areaId = this.state.areaClicked.id;
-    if (areaId === 1) {
+    if (areaId === 12) {
       this.handleShowModalSP();
-    } else if (areaId === 2) {
+    } else if (areaId === 13) {
       this.handleShowModalHP();
-    } else if (areaId === 3) {
+    } else if (areaId === 14) {
       this.handleShowModalHL();
       }
     }
@@ -97,16 +97,29 @@ class Cooridor extends Component {
     this.placeSpan(light, areaClicked)
     await this.setState({ areaClicked: null })
   }
-
-  placeSpan(light, areaClicked) {
-    console.log(light.image)
-    console.log(areaClicked)
+  placeSpan(light) {
     let imgSrc = light.image
     let spanCoords = this.state.areaClicked.scaledCoords
+    let area = this.state.areaClicked.id
+    let use = light.use
     this.setState({ selectedLight: light })
-    this.setState({ products: [...this.state.products, {imgSrc, spanCoords} ]  })
+    this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
   }
-
+  clearSquareC = async => {
+    let areaClicked = this.state.areaClicked.id
+    let selectedProducts = this.state.products
+    // Removes light from products array
+    _.remove(selectedProducts, (n) => {
+      return n.area === areaClicked
+  })
+    this.setState({
+      showModalHP: false,
+      showModalHL: false,
+      showModalSP: false
+    });
+    this.setState({ areaClicked: null })
+  }
+  
   handleCloseModalHP = async () => {
     this.setState({ showModalHP: false });
   };
@@ -221,6 +234,9 @@ class Cooridor extends Component {
           </Modal.Header>
           <Modal.Body><Row>{wallCard}</Row></Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.clearSquareC}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalHP}>
               Close
             </Button>
@@ -236,6 +252,9 @@ class Cooridor extends Component {
           </Modal.Header>
           <Modal.Body><Row>{hallCard}</Row></Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.clearSquareC}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalHL}>
               Close
             </Button>
@@ -251,6 +270,9 @@ class Cooridor extends Component {
           </Modal.Header>
           <Modal.Body><Row>{stairsCard}</Row></Modal.Body>
           <Modal.Footer>
+            <Button variant="secondary" onClick={this.clearSquareC}>
+              Clear
+            </Button>
             <Button variant="secondary" onClick={this.handleCloseModalSP}>
               Close
             </Button>

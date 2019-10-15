@@ -148,14 +148,13 @@ class UnitOverlay extends Component {
     this.setState({ selectedLight: light })
     this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
   }
-  clearSquare() {
+  clearSquare = async => {
     let areaClicked = this.state.areaClicked.id
     let selectedProducts = this.state.products
     // Removes light from products array
     _.remove(selectedProducts, (n) => {
       return n.area === areaClicked
   })
-    
     this.setState({
       showModalBF: false,
       showModalLF: false,
@@ -255,7 +254,6 @@ class UnitOverlay extends Component {
             zIndex: 2,
             left: `${e.spanCoords[0] + 38}px`,
             top: `${e.spanCoords[1] + 10}px`,
-            // width: `15%`,
             height: `15%`,
             width: `15%`,
             pointerEvents: "none"

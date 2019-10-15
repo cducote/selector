@@ -32,16 +32,14 @@ class Landing extends Component {
         //handlePageChange now removes any dupes before page change
         const currentUser = this.props.currentUser
         const cart = this.props.currentUser.cart
-        console.log(cart)
+        // console.log(cart)
         const cartArray = currentUser.cart.filter((light,index) => {
-            
             return index === currentUser.cart.findIndex(obj => {
-               
             return JSON.stringify(obj) === JSON.stringify(light);
-            
         });
     });
         currentUser.cart = cartArray
+        // Removes old selected light and replaces it with new light in same square
         const newCartArray = cart.filter((light, i, array) => {
             return !array.slice(i + 1).some(obj => obj.areaId === light.areaId);
           })
@@ -62,14 +60,22 @@ class Landing extends Component {
      }
     
     handlePageChangeFinal = async ()=> {
+        const cart = this.props.currentUser.cart
         const currentUser = this.props.currentUser
         const cartArray = currentUser.cart.filter((light,index) => {
             return index === currentUser.cart.findIndex(obj => {
             return JSON.stringify(obj) === JSON.stringify(light);
         });
     });
-        currentUser.cart.length = 0
         currentUser.cart = cartArray 
+        // Removes old selected light and replaces it with new light in same square
+        const newCartArray = cart.filter((light, i, array) => {
+            return !array.slice(i + 1).some(obj => obj.areaId === light.areaId);
+          })
+          console.log(newCartArray)
+        currentUser.cart = newCartArray
+
+
         this.setState({ corridorSelection: false })
         this.setState({ finalPageShow: true })
     }
