@@ -153,7 +153,7 @@ class Cooridor extends Component {
             zIndex: 2,
             left: `${e.spanCoords[0] + 25}px`,
             top: `${e.spanCoords[1] + 10}px`,
-            width: `15%`,
+            // width: `15%`,
             height: `15%`,
             pointerEvents: "none"
           }}

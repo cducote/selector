@@ -12,6 +12,7 @@ class UnitOverlay extends Component {
 
   state = {
     areaClicked: 0,
+    responsive: 1140,
     showModalBF: false,
     showModalLF: false,
     showModalBalcony: false,
@@ -52,8 +53,38 @@ class UnitOverlay extends Component {
       this.chunkArray()
     }
 
+    handleResize = (event) => {
+      const S = 355;
+      const M = 725;
+      const L = 950;
+      const XL = 1140;
+      let responsive = 400;
+      let width = window.innerWidth;
+      switch(true) {
+          case width >= 1200:
+              responsive = XL;
+              break;
+          case width >= 900:
+              responsive = L;
+              break;
+          case width >= 700:
+              responsive = M;
+              break;
+          default:
+              responsive = S;
+      }
+  
+      this.setState({ responsive });
+  }
+  
+  
+
   componentDidMount = async () => {
     await this.getAllProducts()
+    window.addEventListener('resize', this.handleResize);
+  }
+  componentWillUnmount = async () => {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   chunkArray() {
@@ -252,10 +283,10 @@ class UnitOverlay extends Component {
           style={{
             position: "absolute",
             zIndex: 2,
-            left: `${e.spanCoords[0] + 38}px`,
+            left: `${e.spanCoords[0] + 30}px`,
             top: `${e.spanCoords[1] + 10}px`,
             height: `15%`,
-            width: `15%`,
+            // width: `15%`,
             pointerEvents: "none"
           }}
           />
@@ -362,21 +393,21 @@ class UnitOverlay extends Component {
       );
     });
     
-    let S = 355;
-    let M = 725;
-    let L = 950
-    let XL = 1140
-    let responsive = 400
-    let width = window.innerWidth
-    if (width >= 1200) {
-      responsive = XL
-    } else if (width >= 900) {
-      responsive = L
-    } else if (width >= 700){
-      responsive = M
-    } else {
-      responsive = S
-    }
+    // let S = 355;
+    // let M = 725;
+    // let L = 950
+    // let XL = 1140
+    // let responsive = 400
+    // let width = window.innerWidth
+    // if (width >= 1200) {
+    //   responsive = XL
+    // } else if (width >= 900) {
+    //   responsive = L
+    // } else if (width >= 700){
+    //   responsive = M
+    // } else {
+    //   responsive = S
+    // }
 
     const mapperstyles = {
       backgroundColor: 'red'
@@ -388,7 +419,7 @@ class UnitOverlay extends Component {
       <ImageMapper
         styles={mapperstyles}
         src={unit}
-        width={responsive}
+        width={this.state.responsive}
         imgWidth={1920}
         map={MAP}
         onClick={area => this.areaCheck(area)}
