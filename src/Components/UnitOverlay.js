@@ -175,9 +175,11 @@ class UnitOverlay extends Component {
     let area = this.state.areaClicked.id
     let use = light.use
     let newLight = Object.assign(light, {spanCoords, area})
+    let clonedLight = Object.assign({}, newLight)
+    console.log(clonedLight)
     this.setState({ selectedLight: light })
     this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
-    selectedUnitLights.push(newLight)
+    selectedUnitLights.push(clonedLight)
   }
   clearSquare = async => {
     let areaClicked = this.state.areaClicked.id

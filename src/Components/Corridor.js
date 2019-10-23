@@ -32,11 +32,36 @@ class Cooridor extends Component {
     })
     this.chunkArray()
   }
+  handleResize = (event) => {
+    const S = 355;
+    const M = 725;
+    const L = 950;
+    const XL = 1140;
+    let responsive = 400;
+    let width = window.innerWidth;
+    switch(true) {
+        case width >= 1200:
+            responsive = XL;
+            break;
+        case width >= 900:
+            responsive = L;
+            break;
+        case width >= 700:
+            responsive = M;
+            break;
+        default:
+            responsive = S;
+    }
+    this.setState({ responsive });
+}
 
   componentDidMount = async () => {
     await this.getAllProducts()
+    window.addEventListener('resize', this.handleResize);
   }
-
+  componentWillUnmount = async () => {
+    window.removeEventListener('resize', this.handleResize);
+  }
   chunkArray() {
     let allProducts = this.state.productsAPI.lights
     let grouped = _.groupBy(allProducts, 'use')
@@ -98,18 +123,26 @@ class Cooridor extends Component {
     await this.setState({ areaClicked: null })
   }
   placeSpan(light) {
+    let selectedCorrLights = this.props.corridorLights
     let imgSrc = light.image
     let spanCoords = this.state.areaClicked.scaledCoords
     let area = this.state.areaClicked.id
     let use = light.use
+    let newLight = Object.assign(light, {spanCoords, area})
     this.setState({ selectedLight: light })
     this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
+    selectedCorrLights.push(newLight)
   }
   clearSquareC = async => {
     let areaClicked = this.state.areaClicked.id
-    let selectedProducts = this.state.products
+    let selectedLights = this.props.corridorLights
+    // attempt at clear button removing light from cart *not working yet*
+    let cart = this.props.currentUser.cart
+    _.remove(cart, (i) => {
+      return i.areaId === areaClicked
+    })
     // Removes light from products array
-    _.remove(selectedProducts, (n) => {
+    _.remove(selectedLights, (n) => {
       return n.area === areaClicked
   })
     this.setState({
@@ -144,7 +177,7 @@ class Cooridor extends Component {
         textAlign: 'center',
       }
 
-      const selectedProduct = this.state.products.map((e, i) =>(
+      const selectedProduct = this.props.corridorLights.map((e, i) =>(
         <img key={i} 
           alt='x' 
           src={e.imgSrc} 
