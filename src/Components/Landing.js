@@ -21,6 +21,8 @@ const StyledButton = styled(Button)`
 class Landing extends Component {
 
     state = {
+        selectedUnitLights: [],
+        selectedCorridorLights: [],
         corridorSelection: false,
         finalPageShow: false,
         hideButtons: false,
@@ -43,7 +45,7 @@ class Landing extends Component {
         const newCartArray = cart.filter((light, i, array) => {
             return !array.slice(i + 1).some(obj => obj.areaId === light.areaId);
           })
-          console.log(newCartArray)
+        //   console.log(newCartArray)
         currentUser.cart = newCartArray      
 
         
@@ -72,7 +74,7 @@ class Landing extends Component {
         const newCartArray = cart.filter((light, i, array) => {
             return !array.slice(i + 1).some(obj => obj.areaId === light.areaId);
           })
-          console.log(newCartArray)
+        //   console.log(newCartArray)
         currentUser.cart = newCartArray
 
 
@@ -94,16 +96,22 @@ class Landing extends Component {
         const hideButtons = this.state.hideButtons
         let page;
         let buttonBox = <div className='buttonBox'>
-        <StyledButton variant='secondary' onClick={this.handleGoBack2}> <FaChevronLeft/>&nbsp;Back</StyledButton>&emsp;
-        <StyledButton variant='secondary' onClick={this.printDocument}>Print&nbsp;<FaPrint/></StyledButton>
-        </div>
+                            <StyledButton variant='secondary' onClick={this.handleGoBack2}> <FaChevronLeft/>&nbsp;Back</StyledButton>&emsp;
+                            <StyledButton variant='secondary' onClick={this.printDocument}>Print&nbsp;<FaPrint/></StyledButton>
+                        </div>
         if (hideButtons){
             buttonBox = <div>Thank you!</div>
         }
         if (corridorSelection) {
             // 2
             page =  <div className='main'> 
-                      <Corridor  updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>  
+                      <Corridor  
+                        updateCart={this.props.updateCart} 
+                        currentUser={this.props.currentUser} 
+                        updateCartCount={this.updateCartCount}
+                        updateCartCountNav={this.props.updateCartCountNav}
+                        corridorLights={this.state.selectedCorridorLights}
+                         />  
                       <div className='buttonBox'>
                         <StyledButton variant='secondary' onClick={this.handleGoBack}><FaChevronLeft/>&nbsp;Back</StyledButton>&emsp;
                         <StyledButton variant='secondary' onClick={this.handlePageChangeFinal}>Summary&nbsp;<FaChevronRight/></StyledButton>
@@ -121,7 +129,13 @@ class Landing extends Component {
             // 1
             page = <div className='main'>
                     
-                        <UnitOverlay updateCart={this.props.updateCart} currentUser={this.props.currentUser} updateCartCount={this.updateCartCount} updateCartCountNav={this.props.updateCartCountNav}/>
+                        <UnitOverlay 
+                            updateCart={this.props.updateCart} 
+                            currentUser={this.props.currentUser} 
+                            updateCartCount={this.updateCartCount} 
+                            updateCartCountNav={this.props.updateCartCountNav} 
+                            unitLights={this.state.selectedUnitLights}
+                            />
                         <div className='buttonBox'>
                             <StyledButton variant='secondary' onClick={this.handlePageChange}>
                                To Corridor Selection&nbsp;

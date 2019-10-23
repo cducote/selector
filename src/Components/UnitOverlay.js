@@ -73,11 +73,8 @@ class UnitOverlay extends Component {
           default:
               responsive = S;
       }
-  
       this.setState({ responsive });
   }
-  
-  
 
   componentDidMount = async () => {
     await this.getAllProducts()
@@ -172,12 +169,15 @@ class UnitOverlay extends Component {
     this.setState({ areaClicked: null })
   };
   placeSpan(light) {
+    let selectedUnitLights = this.props.unitLights
     let imgSrc = light.image
     let spanCoords = this.state.areaClicked.scaledCoords
     let area = this.state.areaClicked.id
     let use = light.use
+    let newLight = Object.assign(light, {spanCoords, area})
     this.setState({ selectedLight: light })
     this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
+    selectedUnitLights.push(newLight)
   }
   clearSquare = async => {
     let areaClicked = this.state.areaClicked.id
@@ -275,7 +275,7 @@ class UnitOverlay extends Component {
       fontSize: '1em'
     }
 
-    const selectedProduct = this.state.products.map((e, i) =>(
+    const selectedProduct = this.props.unitLights.map((e, i) =>(
         <img key={i} 
           className='mapped'
           alt='x' 
@@ -393,21 +393,21 @@ class UnitOverlay extends Component {
       );
     });
     
-    // let S = 355;
-    // let M = 725;
-    // let L = 950
-    // let XL = 1140
-    // let responsive = 400
-    // let width = window.innerWidth
-    // if (width >= 1200) {
-    //   responsive = XL
-    // } else if (width >= 900) {
-    //   responsive = L
-    // } else if (width >= 700){
-    //   responsive = M
-    // } else {
-    //   responsive = S
-    // }
+    let S = 355;
+    let M = 725;
+    let L = 950
+    let XL = 1140
+    let responsive = 400
+    let width = window.innerWidth
+    if (width >= 1200) {
+      responsive = XL
+    } else if (width >= 900) {
+      responsive = L
+    } else if (width >= 700){
+      responsive = M
+    } else {
+      responsive = S
+    }
 
     const mapperstyles = {
       backgroundColor: 'red'
@@ -419,7 +419,7 @@ class UnitOverlay extends Component {
       <ImageMapper
         styles={mapperstyles}
         src={unit}
-        width={this.state.responsive}
+        width={responsive}
         imgWidth={1920}
         map={MAP}
         onClick={area => this.areaCheck(area)}
