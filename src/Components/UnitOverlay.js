@@ -12,6 +12,8 @@ class UnitOverlay extends Component {
 
   state = {
     areaClicked: 0,
+    // xOffset: 30,
+    // yOffset: 10,
     responsive: 1140,
     showModalBF: false,
     showModalLF: false,
@@ -59,26 +61,53 @@ class UnitOverlay extends Component {
       const L = 950;
       const XL = 1140;
       let responsive = 400;
+      let xOffset = 30;
+      let yOffset = 10;
       let width = window.innerWidth;
       switch(true) {
           case width >= 1200:
               responsive = XL;
+              xOffset = 30;
+              yOffset = 10;
               break;
           case width >= 900:
               responsive = L;
+              xOffset = 30;
+              yOffset = 10;
               break;
           case width >= 700:
               responsive = M;
+              xOffset = 20;
+              yOffset = 10;
               break;
           default:
               responsive = S;
+              xOffset = 20;
+              yOffset = 10;
       }
       this.setState({ responsive });
+      this.setState({ xOffset })
+      this.setState({ yOffset })
   }
 
   componentDidMount = async () => {
     await this.getAllProducts()
     window.addEventListener('resize', this.handleResize);
+    
+    let width = window.innerWidth
+    if (width >= 1200) {
+      this.setState({xOffset: 30})
+      this.setState({yOffset: 10})
+    } else if (width >= 900) {
+      this.setState({xOffset: 30})
+      this.setState({yOffset: 10})
+    } else if (width >= 700){
+      this.setState({xOffset: 30})
+      this.setState({yOffset: 10})
+    } else {
+      this.setState({xOffset: 20})
+      this.setState({yOffset: 10})
+    }
   }
   componentWillUnmount = async () => {
     window.removeEventListener('resize', this.handleResize);
@@ -289,8 +318,8 @@ class UnitOverlay extends Component {
           style={{
             position: "absolute",
             zIndex: 2,
-            left: `${e.spanCoords[0] + 30}px`,
-            top: `${e.spanCoords[1] + 10}px`,
+            left: e.spanCoords[0] + this.state.xOffset,
+            top: e.spanCoords[1] + this.state.yOffset,
             height: `15%`,
             // width: `15%`,
             pointerEvents: "none"
