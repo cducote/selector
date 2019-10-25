@@ -183,7 +183,11 @@ class UnitOverlay extends Component {
   }
   clearSquare = async => {
     let areaClicked = this.state.areaClicked.id
-    let selectedProducts = this.state.products
+    let selectedProducts = this.props.unitLights
+    let cart = this.props.currentUser.cart
+    _.remove(cart, (i) => {
+      return i.areaId === areaClicked
+    })
     // Removes light from products array
     _.remove(selectedProducts, (n) => {
       return n.area === areaClicked
