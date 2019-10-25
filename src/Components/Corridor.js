@@ -180,7 +180,7 @@ class Cooridor extends Component {
       const selectedProduct = this.props.corridorLights.map((e, i) =>(
         <img key={i} 
           alt='x' 
-          src={e.imgSrc} 
+          src={e.image} 
           style={{
             position: "absolute",
             zIndex: 2,

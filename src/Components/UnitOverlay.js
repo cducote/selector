@@ -314,7 +314,7 @@ class UnitOverlay extends Component {
         <img key={i} 
           className='mapped'
           alt='x' 
-          src={e.imgSrc} 
+          src={e.image} 
           style={{
             position: "absolute",
             zIndex: 2,
