@@ -12,8 +12,6 @@ class UnitOverlay extends Component {
 
   state = {
     areaClicked: 0,
-    // xOffset: 30,
-    // yOffset: 10,
     responsive: 1140,
     showModalBF: false,
     showModalLF: false,
@@ -88,6 +86,10 @@ class UnitOverlay extends Component {
       this.setState({ responsive });
       this.setState({ xOffset })
       this.setState({ yOffset })
+      let num = responsive/1920
+      let x = num.toFixed(5)
+      this.setState({ scaled: x })
+      // console.log(x)
   }
 
   componentDidMount = async () => {
@@ -98,15 +100,19 @@ class UnitOverlay extends Component {
     if (width >= 1200) {
       this.setState({xOffset: 30})
       this.setState({yOffset: 10})
+      this.setState({scaled: 0.59375})
     } else if (width >= 900) {
       this.setState({xOffset: 30})
       this.setState({yOffset: 10})
+      this.setState({scaled: 0.49479})
     } else if (width >= 700){
       this.setState({xOffset: 30})
       this.setState({yOffset: 10})
+      this.setState({scaled: 0.37760})
     } else {
       this.setState({xOffset: 20})
       this.setState({yOffset: 10})
+      this.setState({scaled: 0.18490})
     }
   }
   componentWillUnmount = async () => {
@@ -200,20 +206,20 @@ class UnitOverlay extends Component {
   placeSpan(light) {
     let selectedUnitLights = this.props.unitLights
     let imgSrc = light.image
-    let spanCoords = this.state.areaClicked.scaledCoords
+    let coords = this.state.areaClicked.coords
     let area = this.state.areaClicked.id
     let use = light.use
-    let newLight = Object.assign(light, {spanCoords, area})
+    let newLight = Object.assign(light, {coords, area})
     let clonedLight = Object.assign({}, newLight)
-    console.log(clonedLight)
     this.setState({ selectedLight: light })
-    this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
+    this.setState({ products: [...this.state.products, {imgSrc, coords, area, use} ]  })
     selectedUnitLights.push(clonedLight)
   }
   clearSquare = async => {
     let areaClicked = this.state.areaClicked.id
     let selectedProducts = this.props.unitLights
     let cart = this.props.currentUser.cart
+    // Removes light from cart array
     _.remove(cart, (i) => {
       return i.areaId === areaClicked
     })
@@ -312,16 +318,14 @@ class UnitOverlay extends Component {
 
     const selectedProduct = this.props.unitLights.map((e, i) =>(
         <img key={i} 
-          className='mapped'
           alt='x' 
           src={e.image} 
           style={{
             position: "absolute",
             zIndex: 2,
-            left: e.spanCoords[0] + this.state.xOffset,
-            top: e.spanCoords[1] + this.state.yOffset,
+            left: e.coords[0]*this.state.scaled + this.state.xOffset,
+            top: e.coords[1]*this.state.scaled + this.state.yOffset,
             height: `15%`,
-            // width: `15%`,
             pointerEvents: "none"
           }}
           />
@@ -443,23 +447,15 @@ class UnitOverlay extends Component {
     } else {
       responsive = S
     }
-
-    const mapperstyles = {
-      backgroundColor: 'red'
-    }
- 
-
-    let responsiveUnitMapper = (
     
+    let responsiveUnitMapper = (
       <ImageMapper
-        styles={mapperstyles}
         src={unit}
         width={responsive}
         imgWidth={1920}
         map={MAP}
         onClick={area => this.areaCheck(area)}
       />
-          
     )
     
     return (

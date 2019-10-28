@@ -38,27 +38,62 @@ class Cooridor extends Component {
     const L = 950;
     const XL = 1140;
     let responsive = 400;
+    let xOffset = 25;
+    let yOffset = 10;
     let width = window.innerWidth;
     switch(true) {
         case width >= 1200:
             responsive = XL;
+            xOffset = 25;
+            yOffset = 10;
             break;
         case width >= 900:
             responsive = L;
+            xOffset = 25;
+            yOffset = 10;
             break;
         case width >= 700:
             responsive = M;
+            xOffset = 25;
+            yOffset = 10;
             break;
         default:
             responsive = S;
+            xOffset = 25;
+            yOffset = 10;
     }
     this.setState({ responsive });
+    this.setState({ xOffset })
+    this.setState({ yOffset })
+    let num = responsive/1920
+    let x = num.toFixed(5)
+    this.setState({ scaled: x })
+    // console.log(x)
 }
 
   componentDidMount = async () => {
     await this.getAllProducts()
     window.addEventListener('resize', this.handleResize);
+    let width = window.innerWidth
+    if (width >= 1200) {
+      this.setState({xOffset: 25})
+      this.setState({yOffset: 10})
+      this.setState({scaled: 0.59375})
+    } else if (width >= 900) {
+      this.setState({xOffset: 25})
+      this.setState({yOffset: 10})
+      this.setState({scaled: 0.49479})
+    } else if (width >= 700){
+      this.setState({xOffset: 25})
+      this.setState({yOffset: 10})
+      this.setState({scaled: 0.37760})
+    } else {
+      this.setState({xOffset: 25})
+      this.setState({yOffset: 10})
+      this.setState({scaled: 0.18490})
+    }
   }
+  
   componentWillUnmount = async () => {
     window.removeEventListener('resize', this.handleResize);
   }
@@ -125,12 +160,12 @@ class Cooridor extends Component {
   placeSpan(light) {
     let selectedCorrLights = this.props.corridorLights
     let imgSrc = light.image
-    let spanCoords = this.state.areaClicked.scaledCoords
+    let coords = this.state.areaClicked.coords
     let area = this.state.areaClicked.id
     let use = light.use
-    let newLight = Object.assign(light, {spanCoords, area})
+    let newLight = Object.assign(light, {coords, area})
     this.setState({ selectedLight: light })
-    this.setState({ products: [...this.state.products, {imgSrc, spanCoords, area, use} ]  })
+    this.setState({ products: [...this.state.products, {imgSrc, coords, area, use} ]  })
     selectedCorrLights.push(newLight)
   }
   clearSquareC = async => {
@@ -178,15 +213,15 @@ class Cooridor extends Component {
       }
 
       const selectedProduct = this.props.corridorLights.map((e, i) =>(
+        
         <img key={i} 
           alt='x' 
           src={e.image} 
           style={{
             position: "absolute",
             zIndex: 2,
-            left: `${e.spanCoords[0] + 25}px`,
-            top: `${e.spanCoords[1] + 10}px`,
-            // width: `15%`,
+            left: e.coords[0]*this.state.scaled + this.state.xOffset,
+            top: e.coords[1]*this.state.scaled + this.state.yOffset,
             height: `15%`,
             pointerEvents: "none"
           }}
@@ -223,19 +258,34 @@ class Cooridor extends Component {
           </Card>
         );
       });
-
-    let small = 375;
-    let medium = 750;
-    let large = 1024
+    let S = 355;
+    let M = 725;
+    let L = 950
+    let XL = 1140
     let responsive = 400
     let width = window.innerWidth
-    if (width >= 900) {
-      responsive = large
+    if (width >= 1200) {
+      responsive = XL
+    } else if (width >= 900) {
+      responsive = L
     } else if (width >= 700){
-      responsive = medium
+      responsive = M
     } else {
-      responsive = small
+      responsive = S
     }
+  
+    // let small = 375;
+    // let medium = 750;
+    // let large = 1024
+    // let responsive = 400
+    // let width = window.innerWidth
+    // if (width >= 900) {
+    //   responsive = large
+    // } else if (width >= 700){
+    //   responsive = medium
+    // } else {
+    //   responsive = small
+    // }
     let responsiveUnitMapper = (
       <ImageMapper
             src={CorridorNoEM}
