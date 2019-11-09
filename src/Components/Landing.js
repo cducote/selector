@@ -26,8 +26,16 @@ class Landing extends Component {
         corridorSelection: false,
         finalPageShow: false,
         hideButtons: false,
+        hasError: false,
         nullBox: null,
         cartCount: this.props.currentUser.cart.length
+    }
+
+    componentDidCatch(error) {
+        if(error) {
+            this.setState({ hasError: true })
+        }
+        
     }
     
     handlePageChange = async () => {
@@ -94,6 +102,7 @@ class Landing extends Component {
         const corridorSelection = this.state.corridorSelection
         const finalPage = this.state.finalPageShow
         const hideButtons = this.state.hideButtons
+        const hasError = this.state.hasError
         let page;
         let buttonBox = <div className='buttonBox'>
                             <StyledButton variant='secondary' onClick={this.handleGoBack2}> <FaChevronLeft/>&nbsp;Back</StyledButton>&emsp;
@@ -125,6 +134,11 @@ class Landing extends Component {
                     {buttonBox}
                     </div>
                    </>
+        } else if (hasError) {
+            page =  <div>
+                        <h2>Something went wrong...</h2>
+                        <h4>Please regresh the page :)</h4>
+                    </div>
         } else {
             // 1
             page = <div className='main'>

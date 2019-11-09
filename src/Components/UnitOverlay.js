@@ -44,6 +44,9 @@ class UnitOverlay extends Component {
   getAllProducts = async ()=> { 
       const API_KEY = process.env.REACT_APP_API_KEY
       const response = await axios.get(`https://www.vineyardlighting.com/api/allProducts.php?key=${API_KEY}`)
+      .catch(error => {
+        console.log(error)
+      })
       let obj = response.data
       this.setState({ 
         productsAPI: {

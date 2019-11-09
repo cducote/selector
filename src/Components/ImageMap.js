@@ -11,6 +11,6 @@ let MAP = {
         {id: 8, name: "living", shape: 'rect', coords: [1633,2,1875,241], preFillColor: 'clear'},
         {id: 9, name: "bar", shape: 'rect', coords: [1627,278,1872,517], preFillColor: 'clear'},
         {id: 10, name: "entry", shape: 'rect', coords: [1627,834,1868,1075], preFillColor: 'clear'},
-        {id: 11, name: "kitchen",shape: 'rect', coords: [1631,561,1868,800], preFillColor: 'clear'}]}
-        
+        {id: 11, name: "kitchen",shape: 'rect', coords: [1631,561,1868,800], preFillColor: 'clear'}]
+    }
 export default MAP
